@@ -49,8 +49,6 @@ module.exports = async function Diagnostics(message, client) {
       discordStatusIcon = Config.resources.emojis.outageUnknown;
     try {
       discordStatusJson = await (await fetch('https://srhpyqt94yxb.statuspage.io/api/v2/status.json')).json();
-      Log(discordStatusJson, Log.SEVERITY.VERBOSE);
-
       discordStatusText = discordStatusJson.status.description;
 
       switch (discordStatusJson.status.indicator) {
