@@ -1,4 +1,4 @@
-export default Config = {
+module.exports = {
   token: `ENTER TOKEN HERE`,
   commandPrefix: `r/`,
   colors: {
@@ -11,6 +11,10 @@ export default Config = {
     },
     channelIds: {
       realme_x_series: '633537276588064768',
+      whitelistedChannels: [
+        '455746768353755139', // #general in Emojis
+        '729418543581495398', // #greetings in Emojis
+      ],
     },
     urls: {
       guideUrl: 'https://giffgaff.davwheat.dev/realme/x2-pro',

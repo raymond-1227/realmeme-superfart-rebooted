@@ -27,6 +27,16 @@ client.on('ready', () => {
 });
 
 client.on('message', (msg) => {
+  const whitelistedChannels = [
+    Config.resources.channelIds.realme_x_series,
+    ...Config.resources.channelIds.whitelistedChannels,
+  ];
+
+  // Not a DM or message in whitelisted channels
+  if (msg.channel.type !== 'dm' && !whitelistedChannels.includes(msg.channel.id)) {
+    return;
+  }
+
   // It's me!
   if (msg.author.id === client.user.id) {
     return;
