@@ -1,15 +1,13 @@
-const Config = require('../config');
+const Config = require('../Config');
 const { MessageEmbed } = require('discord.js');
 const Log = require('../Utils/Log');
 
 module.exports = async function TheBestRomIsALie(message) {
-  const { content } = message;
-
-  const mc = content.toLowerCase();
+  const content = message.content.toLowerCase();
 
   //#region Actual command
 
-  if (mc.startsWith(`${Config.commandPrefix}best rom`) || mc.startsWith(`${Config.commandPrefix}bestrom`)) {
+  if (content.startsWith(`${Config.commandPrefix}best rom`) || content.startsWith(`${Config.commandPrefix}bestrom`)) {
     Log.Helpers.CommandRun(message, 'best rom');
 
     let pings = '';
@@ -44,7 +42,7 @@ module.exports = async function TheBestRomIsALie(message) {
 
   //#region Message content trigger
 
-  if (mc.includes('best rom') && !mc.includes('no ')) {
+  if (content.includes('best rom') && !content.includes('no ')) {
     Log.Helpers.CommandTriggered(message, 'best rom');
 
     await message.reply(

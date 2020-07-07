@@ -1,5 +1,10 @@
+require.extensions['.jsonc'] = function (module, filename) {
+  const fs = require('fs');
+  module.exports = fs.readFileSync(filename, 'utf8');
+};
+
 const Discord = require('discord.js');
-const Config = require('./config');
+const Config = require('./Config');
 
 const Log = require('./Utils/Log');
 
@@ -27,10 +32,7 @@ client.on('ready', () => {
 });
 
 client.on('message', (msg) => {
-  const whitelistedChannels = [
-    Config.resources.channelIds.realme_x_series,
-    ...Config.resources.channelIds.whitelistedChannels,
-  ];
+  const whitelistedChannels = Config.resources.channelIds.whitelistedChannels;
 
   // Not a DM or message in whitelisted channels
   if (msg.channel.type !== 'dm' && !whitelistedChannels.includes(msg.channel.id)) {

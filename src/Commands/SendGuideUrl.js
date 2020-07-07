@@ -1,9 +1,9 @@
-const Config = require('../config');
+const Config = require('../Config');
 const { MessageEmbed } = require('discord.js');
 const Log = require('../Utils/Log');
 
 module.exports = async function SendGuideUrl(message) {
-  const { content } = message;
+  const content = message.content.toLowerCase();
 
   if (content.startsWith(`${Config.commandPrefix}guide`)) {
     Log.Helpers.CommandRun(message, 'guide');
@@ -12,7 +12,7 @@ module.exports = async function SendGuideUrl(message) {
       // Set the title of the field
       .setTitle('realme X2 Pro unlocking and custom ROM guide')
       // Set the color of the embed
-      .setColor(Config.colors.primary.hex)
+      .setColor(Config.colors.primary)
       // Set the main content of the embed
       .setDescription(
         "New to custom ROMs? Check out the guide we've put together. It'll walk you through step-by-step."

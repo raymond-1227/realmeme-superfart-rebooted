@@ -1,6 +1,6 @@
 const Moment = require('moment');
 const mkdirp = require('mkdirp');
-const { colors } = require('../config');
+const { colors } = require('../Config');
 
 // Colors
 const COLORS = {
