@@ -8,13 +8,14 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^12.2.0",
+    "jsonc": "^2.0.0",
     "mkdirp": "^1.0.4",
     "moment": "^2.27.0",
     "node-fetch": "^3.0.0-beta.7"
   },
   "scripts": {
     "start": "node .",
-    "lint": "prettier --write \"src/**/*.{js,json}\""
+    "lint": "prettier --write \"src/**/*.{js,json,jsonc}\""
   },
   "devDependencies": {
     "prettier": "^2.0.5"
