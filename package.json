@@ -15,9 +15,11 @@
   },
   "scripts": {
     "start": "node .",
+    "watch": "pm2 start . --watch",
     "lint": "prettier --write \"src/**/*.{js,json,jsonc}\""
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "pm2": "^4.4.0"
   }
 }
