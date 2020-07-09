@@ -584,6 +584,11 @@ ftp@~0.3.10:
     readable-stream "1.1.x"
     xregexp "2.0.0"
 
+fuse.js@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-6.4.0.tgz#a8db8b1c301cdb313f2ebb6812b31aa7dc2a6a14"
+  integrity sha512-MagWS1i3kj58BgF9xymo+n2ZiSs9MoyVfxkCcr11+mzMpNEyTDyLtbU3DyrVjHsy0Gkjf58FH1n+TaihylFcIA==
+
 get-uri@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/get-uri/-/get-uri-2.0.4.tgz#d4937ab819e218d4cb5ae18e4f5962bef169cc6a"

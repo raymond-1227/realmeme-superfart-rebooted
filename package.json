@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^12.2.0",
+    "fuse.js": "^6.4.0",
     "jsonc": "^2.0.0",
     "mkdirp": "^1.0.4",
     "moment": "^2.27.0",
@@ -15,11 +16,14 @@
   },
   "scripts": {
     "start": "node .",
-    "watch": "pm2 start . --watch",
-    "lint": "prettier --write \"src/**/*.{js,json,jsonc}\""
+    "watch": "pm2 start src/index.js --watch --name \"realmeme SuperFART Bot\"",
+    "lint": "prettier --write \"src/**/*.{js,json,jsonc}\"",
+    "stop": "pm2 stop src/index.js --watch",
+    "status": "pm2 status",
+    "monitor": "pm2 monit"
   },
   "devDependencies": {
-    "prettier": "^2.0.5",
-    "pm2": "^4.4.0"
+    "pm2": "^4.4.0",
+    "prettier": "^2.0.5"
   }
 }
