@@ -19,12 +19,12 @@ module.exports = async function Diagnostics(message, client) {
     // Unauthorised
     if (!AllowedUsers.includes(message.author.id)) {
       Log(
-        `User ${message.author.username}#${message.author.discriminator} attempted to run diagnostics (${message.author.id})`,
+        `User ${message.author.username}#${message.author.discriminator} attempted to run 'diagnostics' (${message.author.id})`,
         Log.SEVERITY.WARN
       );
 
       loadMsg.edit(`${Config.resources.emojis.fail.code}  You don't have permission to use this command`);
-      return;
+      return true;
     }
 
     Log.Helpers.CommandRun(message, 'diagnostics');
