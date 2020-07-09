@@ -1,6 +1,5 @@
 const Moment = require('moment');
 const mkdirp = require('mkdirp');
-const { colors } = require('../Config');
 
 // Colors
 const COLORS = {
@@ -64,44 +63,44 @@ function Log(message, severity = SEVERITY.SUCCESS) {
   const timestamp = Moment().format('YYYY-MM-DD HH:mm:ss.SSSS');
 
   switch (severity) {
-    case SEVERITY.ERROR:
-      console.error(`${timestamp} ${color(CenterPad('ERROR', 9), COLORS.BgRed + COLORS.FgWhite)} ${message}`);
+    case SEVERITY.ERROR: {
+      const msg = `${timestamp} ${color(CenterPad('ERROR', 9), COLORS.BgRed + COLORS.FgWhite)} ${message}`;
+      console.error(msg);
       break;
+    }
 
-    case SEVERITY.WARN:
-      console.warn(`${timestamp} ${color(CenterPad('WARNING', 9), COLORS.BgYellow + COLORS.FgWhite)} ${message}`);
+    case SEVERITY.WARN: {
+      const msg = `${timestamp} ${color(CenterPad('WARNING', 9), COLORS.BgYellow + COLORS.FgWhite)} ${message}`;
+      console.warn(msg);
       break;
+    }
 
-    case SEVERITY.SUCCESS:
-      console.log(`${timestamp} ${color(CenterPad('OK', 9), COLORS.BgGreen + COLORS.FgWhite)} ${message}`);
+    case SEVERITY.SUCCESS: {
+      const msg = `${timestamp} ${color(CenterPad('OK', 9), COLORS.BgGreen + COLORS.FgWhite)} ${message}`;
+      console.log(msg);
       break;
+    }
 
-    case SEVERITY.INFO:
-      console.info(`${timestamp} ${color(CenterPad('INFO', 9), COLORS.BgBlue + COLORS.FgWhite)} ${message}`);
+    case SEVERITY.INFO: {
+      const msg = `${timestamp} ${color(CenterPad('INFO', 9), COLORS.BgBlue + COLORS.FgWhite)} ${message}`;
+      console.info(msg);
       break;
+    }
 
-    case SEVERITY.DEBUG:
-      console.log(`${timestamp} ${color(CenterPad('DEBUG', 9), COLORS.BgMagenta + COLORS.FgBlack)} ${message}`);
+    case SEVERITY.DEBUG: {
+      const msg = `${timestamp} ${color(CenterPad('DEBUG', 9), COLORS.BgMagenta + COLORS.FgBlack)} ${message}`;
+      console.log(msg);
       break;
+    }
 
-    case SEVERITY.VERBOSE:
-      console.info(`${timestamp} ${color(CenterPad('VERBOSE', 9), COLORS.Reverse)} ${message}`, COLORS.Dim);
+    case SEVERITY.VERBOSE: {
+      const msg = `${timestamp} ${color(CenterPad('VERBOSE', 9), COLORS.Reverse)} ${message}`;
+      console.info(msg);
       break;
+    }
   }
-}
-
-function InitLogging() {
-  mkdirp('logs')
-    .then(() => {
-      Log('Initialised log file', SEVERITY.SUCCESS);
-    })
-    .catch((error) => {
-      Log('Failed to initialise log file', SEVERITY.ERROR);
-      return;
-    });
 }
 
 module.exports = Log;
 module.exports.SEVERITY = SEVERITY;
-module.exports.init = InitLogging;
 module.exports.Helpers = { ...require('./LogHelpers') };

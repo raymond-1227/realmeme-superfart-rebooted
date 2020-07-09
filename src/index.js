@@ -23,8 +23,6 @@ function errorCount() {
 
 const client = new Discord.Client();
 
-Log.init();
-
 client.on('ready', () => {
   Log(`Logged in as ${client.user.tag}!`, Log.SEVERITY.SUCCESS);
 

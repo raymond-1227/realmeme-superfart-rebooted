@@ -1,8 +1,10 @@
 const Log = require('./Log');
 
-function CommandRun(message, commandName) {
+function CommandRun(message, commandName, args = null) {
   Log(
-    `User ${message.author.username} ran "${commandName}" in channel '#${message.channel.name}' in server '${message.guild.name}'`,
+    `User ${message.author.username} ran "${commandName}" in channel '#${message.channel.name}' in server '${
+      message.guild.name
+    }' ${args && `with arguments '${args}'`}`,
     Log.SEVERITY.VERBOSE
   );
 }
