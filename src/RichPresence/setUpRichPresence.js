@@ -28,17 +28,11 @@ module.exports = function SetUpRichPresence(client) {
 function SetRandomStatus(client, force = false) {
   const i = getRandomInt(statuses.length);
 
-  if (client.user.presence.activities.length > 0 && !force) {
-    // skip next update if manually changed
-    if (new Date() - Number.parseInt(client.user.presence.activities[0].url) < 14 * 60 * 1000) return false;
-  }
-
   const statusText = `${statuses[i].type.substr(0, 1)}${statuses[i].type.substr(1).toLowerCase()} ${statuses[i].msg}`;
 
   client.user
     .setActivity(statuses[i].msg, {
       type: statuses[i].type,
-      url: `${new Date().getTime()}`,
     })
     .then(() => {
       Log(`Changed presence: ${statusText}`, Log.SEVERITY.INFO);
