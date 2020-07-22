@@ -34,7 +34,7 @@ client.on('message', (msg) => {
   const WhitelistEnabled = whitelistedChannels.length > 0;
 
   // Not a DM or message in whitelisted channels
-  if (msg.channel.type !== 'dm' && (!WhitelistEnabled || !whitelistedChannels.includes(msg.channel.id))) {
+  if (msg.channel.type !== 'dm' && (WhitelistEnabled && !whitelistedChannels.includes(msg.channel.id))) {
     return;
   }
 
