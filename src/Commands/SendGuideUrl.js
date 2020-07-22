@@ -1,13 +1,20 @@
+const Permissions = require('../data/Permissions');
+module.exports.commandInfo = {
+  trigger: 'guide',
+  usage: 'guide [@mention(s)]',
+  aliases: [],
+  name: 'Guide',
+  description: 'Get guide URL',
+  permissionsNeeded: [Permissions.User],
+};
+
 const Config = require('../Config');
 const { MessageEmbed } = require('discord.js');
-const Log = require('../Utils/Log');
 
-module.exports = async function SendGuideUrl(message) {
+module.exports.handler = async function SendGuideUrl(message, client, data) {
   const content = message.content.toLowerCase();
 
   if (content.startsWith(`${Config.commandPrefix}guide`)) {
-    Log.Helpers.CommandRun(message, 'guide');
-
     const embed = new MessageEmbed()
       // Set the title of the field
       .setTitle('realme X2 Pro unlocking and custom ROM guide')

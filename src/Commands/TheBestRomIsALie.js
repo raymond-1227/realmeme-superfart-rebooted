@@ -1,15 +1,21 @@
-const Config = require('../Config');
-const { MessageEmbed } = require('discord.js');
-const Log = require('../Utils/Log');
+const Permissions = require('../data/Permissions');
+module.exports.commandInfo = {
+  trigger: 'bestrom',
+  usage: 'bestrom [@mention(s)]',
+  aliases: ['best rom'],
+  name: 'Best ROM?',
+  description: 'THERE IS NO BEST ROM!',
+  permissionsNeeded: [Permissions.User],
+};
 
-module.exports = async function TheBestRomIsALie(message) {
+const Config = require('../Config');
+
+module.exports.handler = async function TheBestRomIsALie(message, client, data) {
   const content = message.content.toLowerCase();
 
   //#region Actual command
 
   if (content.startsWith(`${Config.commandPrefix}best rom`) || content.startsWith(`${Config.commandPrefix}bestrom`)) {
-    Log.Helpers.CommandRun(message, 'best rom');
-
     let pings = '';
 
     if (message.mentions.members.size > 0) {

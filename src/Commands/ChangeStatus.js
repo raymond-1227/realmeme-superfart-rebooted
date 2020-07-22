@@ -1,3 +1,13 @@
+const Permissions = require('../data/Permissions');
+module.exports.commandInfo = {
+  trigger: 'changestatus',
+  usage: 'changestatus',
+  aliases: [],
+  name: 'Change status',
+  description: 'Forces the bot to pick a new status',
+  permissionsNeeded: [Permissions.Admin],
+};
+
 const Config = require('../Config');
 const Log = require('../Utils/Log');
 
@@ -5,7 +15,7 @@ const AllowedUsers = [Config.resources.userIds.mrjeeves, Config.resources.userId
 
 const { SetRandomStatus } = require('../RichPresence/setUpRichPresence');
 
-module.exports = async function Diagnostics(message, client) {
+module.exports.handler = async function Diagnostics(message, client, data) {
   const content = message.content.toLowerCase();
 
   if (content.startsWith(`${Config.commandPrefix}changestatus`)) {
@@ -17,8 +27,6 @@ module.exports = async function Diagnostics(message, client) {
       );
       return true;
     }
-
-    Log.Helpers.CommandRun(message, 'changestatus');
 
     const newStatus = SetRandomStatus(client, true);
 

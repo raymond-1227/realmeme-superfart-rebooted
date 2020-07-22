@@ -34,7 +34,7 @@ client.on('message', (msg) => {
   const WhitelistEnabled = whitelistedChannels.length > 0;
 
   // Not a DM or message in whitelisted channels
-  if (msg.channel.type !== 'dm' && (WhitelistEnabled && !whitelistedChannels.includes(msg.channel.id))) {
+  if (msg.channel.type !== 'dm' && WhitelistEnabled && !whitelistedChannels.includes(msg.channel.id)) {
     return;
   }
 
@@ -53,8 +53,14 @@ client.on('message', (msg) => {
   }
 
   // Iterate through command handlers until one is triggered
-  CommandHandlers.every(async (handler) => {
-    const result = await handler(msg, client);
+  CommandHandlers.every(async (Command) => {
+    const result = await Command.handler(msg, client, {
+      allCommands: CommandHandlers,
+    });
+
+    if (result) {
+      Log.Helpers.CommandRun(msg, Command.commandInfo.trigger);
+    }
 
     // break for loop if command gets handled
     if (result) return false;

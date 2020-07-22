@@ -1,8 +1,16 @@
+const Permissions = require('../data/Permissions');
+module.exports.commandInfo = {
+  trigger: 'xda',
+  usage: 'xda <device name>',
+  aliases: [],
+  name: 'XDA',
+  description: 'Gets the XDA link for the specified device',
+  permissionsNeeded: [Permissions.User],
+};
+
 const Config = require('../Config');
-const Log = require('../Utils/Log');
 
 const Fuse = require('fuse.js');
-
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 
 const options = {
@@ -15,13 +23,11 @@ const options = {
   ],
 };
 
-module.exports = async function XDA(message, client) {
+module.exports.handler = async function XDA(message, client, data) {
   const content = message.content.toLowerCase();
 
   if (content.startsWith(`${Config.commandPrefix}xda`)) {
     const args = content.substr(`${Config.commandPrefix}xda`.length);
-
-    Log.Helpers.CommandRun(message, 'xda', args);
 
     // Source: https://realmeupdater.com/supported/
     const xdaUrls = require('../data/DeviceXDAList');

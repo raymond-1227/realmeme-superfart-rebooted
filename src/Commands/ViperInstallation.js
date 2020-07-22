@@ -1,15 +1,21 @@
+const Permissions = require('../data/Permissions');
+module.exports.commandInfo = {
+  trigger: 'viper',
+  usage: 'viper [@mention(s)]',
+  aliases: [],
+  name: 'ViPER',
+  description: 'Instructions for how to install ViPER4Android',
+  permissionsNeeded: [Permissions.User],
+};
+
 const Config = require('../Config');
 const { MessageEmbed } = require('discord.js');
 const Log = require('../Utils/Log');
-const fetch = require('node-fetch');
-const path = require('path');
 
-module.exports = async function SendGuideUrl(message) {
+module.exports.handler = async function ViperInstallation(message, client, data) {
   const content = message.content.toLowerCase();
 
   if (content.startsWith(`${Config.commandPrefix}viper`)) {
-    Log.Helpers.CommandRun(message, 'viper');
-
     const reply = await message.reply(`${Config.resources.emojis.loading.code} ${Config.resources.strings.loading}`);
 
     let viperInfo = null;

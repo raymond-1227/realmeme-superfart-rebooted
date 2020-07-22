@@ -1,5 +1,12 @@
-const moment = require('moment');
-const fetch = require('node-fetch');
+const Permissions = require('../data/Permissions');
+module.exports.commandInfo = {
+  trigger: 'cleanup',
+  usage: 'cleanup',
+  aliases: [],
+  name: 'Clean up',
+  description: 'Removes all messages from the bot from the last 5 mins (max 50 msgs)',
+  permissionsNeeded: [Permissions.Admin],
+};
 
 const Config = require('../Config');
 const Log = require('../Utils/Log');
@@ -8,7 +15,7 @@ const AllowedUsers = [Config.resources.userIds.mrjeeves, Config.resources.userId
 
 const { MessageEmbed } = require('discord.js');
 
-module.exports = async function Diagnostics(message, client) {
+module.exports.handler = async function Diagnostics(message, client, data) {
   const content = message.content.toLowerCase();
 
   if (content.startsWith(`${Config.commandPrefix}cleanup`)) {
@@ -24,8 +31,6 @@ module.exports = async function Diagnostics(message, client) {
       );
       return true;
     }
-
-    Log.Helpers.CommandRun(message, 'cleanup');
 
     const requestMadeTime = message.createdAt;
 

@@ -1,3 +1,13 @@
+const Permissions = require('../data/Permissions');
+module.exports.commandInfo = {
+  trigger: 'diagnostics',
+  usage: 'diagnostics',
+  aliases: [],
+  name: 'Diagnostics',
+  description: 'Get diagnostic info about the bot and Discord',
+  permissionsNeeded: [Permissions.Admin],
+};
+
 const moment = require('moment');
 const fetch = require('node-fetch');
 
@@ -8,7 +18,7 @@ const AllowedUsers = [Config.resources.userIds.mrjeeves, Config.resources.userId
 
 const { MessageEmbed } = require('discord.js');
 
-module.exports = async function Diagnostics(message, client) {
+module.exports.handler = async function Diagnostics(message, client, data) {
   const content = message.content.toLowerCase();
 
   if (content.startsWith(`${Config.commandPrefix}diagnostics`)) {
@@ -26,8 +36,6 @@ module.exports = async function Diagnostics(message, client) {
       loadMsg.edit(`${Config.resources.emojis.fail.code}  You don't have permission to use this command`);
       return true;
     }
-
-    Log.Helpers.CommandRun(message, 'diagnostics');
 
     let beforeEdit = new Date();
     // Round trip ping
