@@ -1,3 +1,5 @@
+const Help = require('./Help');
+
 const SendGuideUrl = require('./SendGuideUrl');
 const TheBestRomIsALie = require('./TheBestRomIsALie');
 const ViperInstallation = require('./ViperInstallation');
@@ -7,4 +9,4 @@ const ChangeStatus = require('./ChangeStatus');
 const CleanUp = require('./CleanUp');
 const Diagnostics = require('./Diagnostics');
 
-module.exports = [SendGuideUrl, TheBestRomIsALie, ViperInstallation, XDA, ChangeStatus, CleanUp, Diagnostics];
+module.exports = [Help, SendGuideUrl, TheBestRomIsALie, ViperInstallation, XDA, ChangeStatus, CleanUp, Diagnostics];
