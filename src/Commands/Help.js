@@ -48,7 +48,7 @@ module.exports.handler = async function Help(message, client, data) {
       .setColor(Config.colors.primary)
       // Set the main content of the embed
       .setDescription(
-        "Here's all the commands supported by the realmeme SuperFART bot.\nIn usage, square brackets mean an argument is optional, and angled brackets mean it's required."
+        "Here's all the commands supported by the realmeme SuperFART bot.\nIn usage, square brackets mean an argument is optional, and angled brackets mean it's required.\n\nThis will look nicer soon."
       )
       //.setURL()
       .setFooter(`${Config.resources.emojis.stopwatch.icon} Calculating...`);
