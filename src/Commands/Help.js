@@ -83,8 +83,9 @@ module.exports.handler = async function Help(message, client, data) {
       adminEmbed.addField(`${thisCommand.name} | ${Config.commandPrefix}${thisCommand.trigger}`, info, false);
     });
 
-    await message.author.send(embed);
-    if (AdminUsers.includes(message.author.id)) await message.author.send(adminEmbed);
+    const cmds = await message.author.send(embed);
+    let adminCmds = undefined;
+    if (AdminUsers.includes(message.author.id)) adminCmds = await message.author.send(adminEmbed);
 
     const reply = await message.channel.send(
       new MessageEmbed()
@@ -93,6 +94,19 @@ module.exports.handler = async function Help(message, client, data) {
         .setFooter('This message will auto-delete after 10 seconds')
         .setColor(Config.colors.primary)
     );
+
+    setTimeout(async () => {
+      embed.setFooter(
+        `${Config.resources.emojis.stopwatch.icon} Message generated in ${cmds.createdAt - message.createdAt}ms`
+      );
+      adminCmds &&
+        adminEmbed.setFooter(
+          `${Config.resources.emojis.stopwatch.icon} Message generated in ${adminCmds.createdAt - message.createdAt}ms`
+        );
+
+      await cmds.edit({ embed: embed });
+      adminCmds && (await adminCmds.edit({ embed: adminEmbed }));
+    }, 250);
 
     setTimeout(async () => {
       await reply.delete();
