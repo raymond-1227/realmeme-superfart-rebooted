@@ -156,7 +156,7 @@ module.exports = [
     url: 'https://forum.xda-developers.com/realme-x50-5g',
   },
   {
-    deviceCodes: ['RMX2076EU', 'RMX2076PU','RMX2071'],
+    deviceCodes: ['RMX2076EU', 'RMX2076PU', 'RMX2071'],
     fullName: 'realme X50 Pro 5G',
     shortName: 'X50 Pro 5G',
     url: 'https://forum.xda-developers.com/realme-x50-pro',
