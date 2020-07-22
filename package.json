@@ -20,7 +20,8 @@
     "lint": "prettier --write \"src/**/*.{js,json,jsonc}\"",
     "stop": "pm2 stop src/index.js --watch",
     "status": "pm2 status",
-    "monitor": "pm2 monit"
+    "monitor": "pm2 monit",
+    "logs": "pm2 logs \"realmeme SuperFART Bot\""
   },
   "devDependencies": {
     "pm2": "^4.4.0",
