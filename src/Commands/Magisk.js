@@ -37,7 +37,7 @@ module.exports.handler = async function Magisk(message, client, data) {
       .setThumbnail(magiskLatest.image)
       // Set the main content of the embed
       .setDescription(
-        'Root your device with Magisk! Note that if you\'ve just installed your ROM, you should boot to it before flashing Magisk, otherwise you might bootloop.'
+        "Root your device with Magisk! Note that if you've just installed your ROM, you should boot to it before flashing Magisk, otherwise you might bootloop."
       )
       .setURL(magiskInfo.officialUrl)
       .addFields([
