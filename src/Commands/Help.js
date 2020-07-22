@@ -42,15 +42,11 @@ module.exports.handler = async function Help(message, client, data) {
     CommandData.sort((a, b) => (a.trigger > b.trigger ? 1 : -1));
 
     const embed = new MessageEmbed()
-      // Set the title of the field
       .setTitle('realmeme SuperFART Commands')
-      // Set the color of the embed
       .setColor(Config.colors.primary)
-      // Set the main content of the embed
       .setDescription(
         "Here's all the commands supported by the realmeme SuperFART bot.\nIn usage, square brackets mean an argument is optional, and angled brackets mean it's required.\n\nThis will look nicer soon."
       )
-      //.setURL()
       .setFooter(`${Config.resources.emojis.stopwatch.icon} Calculating...`);
 
     const UserCommands = CommandData.filter((cd) => cd.permissionsNeeded === Permissions.User);
@@ -64,13 +60,9 @@ module.exports.handler = async function Help(message, client, data) {
     });
 
     const adminEmbed = new MessageEmbed()
-      // Set the title of the field
       .setTitle('Admin commands')
-      // Set the color of the embed
       .setColor(Config.colors.primary)
-      // Set the main content of the embed
       .setDescription("You're an admin, so you get some special commands too!")
-      //.setURL()
       .setFooter(`${Config.resources.emojis.stopwatch.icon} Calculating...`);
 
     const AdminCommands = CommandData.filter((cd) => cd.permissionsNeeded === Permissions.Admin);
