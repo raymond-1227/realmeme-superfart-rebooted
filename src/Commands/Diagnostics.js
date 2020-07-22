@@ -22,6 +22,8 @@ module.exports.handler = async function Diagnostics(message, client, data) {
   const content = message.content.toLowerCase();
 
   if (content.startsWith(`${Config.commandPrefix}diagnostics`)) {
+    const { version: BotVersion } = require('../../package.json');
+
     const loadMsg = await message.channel.send(
       `${Config.resources.emojis.loading.code}  ${Config.resources.strings.loading} (⏱️ Initialising)`
     );
@@ -101,14 +103,16 @@ module.exports.handler = async function Diagnostics(message, client, data) {
       .addField('Round time ping', `${Config.resources.emojis.roundTripPing.code} ${roundTripPing}ms`, true)
       .addField('Discord API Ping', `${Config.resources.emojis.ping.code} ${apiPing}ms`, true)
       .addField('Discord status', `${discordStatusIcon}[${discordStatusText}](http://status.discordapp.com)`, true)
-      .setFooter(`${Config.resources.emojis.stopwatch.icon} Calculating...`);
+      .setFooter(`${Config.resources.emojis.stopwatch.icon} Calculating... | Bot version ${BotVersion}`);
 
     // Send the embed to the same channel as the message
     await loadMsg.edit({ content: `${Config.resources.emojis.success.code} Done`, embed: embed });
 
     setTimeout(async () => {
       embed.setFooter(
-        `${Config.resources.emojis.stopwatch.icon} Message generated in ${loadMsg.createdAt - message.createdAt}ms`
+        `${Config.resources.emojis.stopwatch.icon} Message generated in ${
+          loadMsg.createdAt - message.createdAt
+        }ms | Bot version ${BotVersion}`
       );
       await loadMsg.edit({ embed: embed });
     }, 250);
