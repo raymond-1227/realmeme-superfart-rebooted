@@ -8,6 +8,8 @@ module.exports.commandInfo = {
   permissionsNeeded: [Permissions.User],
 };
 
+const Log = require('../Utils/Log');
+
 const Config = require('../Config');
 
 module.exports.handler = async function TheBestRomIsALie(message, client, data) {
