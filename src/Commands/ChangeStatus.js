@@ -5,7 +5,7 @@ module.exports.commandInfo = {
   aliases: [],
   name: 'Change status',
   description: 'Forces the bot to pick a new status',
-  permissionsNeeded: [Permissions.Admin],
+  permissionsNeeded: Permissions.Admin,
 };
 
 const Config = require('../Config');

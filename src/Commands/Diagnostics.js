@@ -5,7 +5,7 @@ module.exports.commandInfo = {
   aliases: [],
   name: 'Diagnostics',
   description: 'Get diagnostic info about the bot and Discord',
-  permissionsNeeded: [Permissions.Admin],
+  permissionsNeeded: Permissions.Admin,
 };
 
 const moment = require('moment');

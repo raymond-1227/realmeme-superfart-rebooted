@@ -5,7 +5,7 @@ module.exports.commandInfo = {
   aliases: [],
   name: 'Clean up',
   description: 'Removes all messages from the bot from the last 5 mins (max 50 msgs)',
-  permissionsNeeded: [Permissions.Admin],
+  permissionsNeeded: Permissions.Admin,
 };
 
 const Config = require('../Config');

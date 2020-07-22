@@ -5,7 +5,7 @@ module.exports.commandInfo = {
   aliases: ['best rom'],
   name: 'Best ROM?',
   description: 'THERE IS NO BEST ROM!',
-  permissionsNeeded: [Permissions.User],
+  permissionsNeeded: Permissions.User,
 };
 
 const Log = require('../Utils/Log');

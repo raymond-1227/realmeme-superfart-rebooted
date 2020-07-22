@@ -5,7 +5,7 @@ module.exports.commandInfo = {
   aliases: [],
   name: 'Guide',
   description: 'Get guide URL',
-  permissionsNeeded: [Permissions.User],
+  permissionsNeeded: Permissions.User,
 };
 
 const Config = require('../Config');

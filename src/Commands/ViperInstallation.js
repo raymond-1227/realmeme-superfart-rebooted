@@ -5,7 +5,7 @@ module.exports.commandInfo = {
   aliases: [],
   name: 'ViPER',
   description: 'Instructions for how to install ViPER4Android',
-  permissionsNeeded: [Permissions.User],
+  permissionsNeeded: Permissions.User,
 };
 
 const Config = require('../Config');

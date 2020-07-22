@@ -5,7 +5,7 @@ module.exports.commandInfo = {
   aliases: [],
   name: 'XDA',
   description: 'Gets the XDA link for the specified device',
-  permissionsNeeded: [Permissions.User],
+  permissionsNeeded: Permissions.User,
 };
 
 const Config = require('../Config');
