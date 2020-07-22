@@ -53,7 +53,7 @@ module.exports.handler = async function ViperInstallation(message, client, data)
           name: 'Troubleshooting',
           value:
             'Because of how custom ROMs add their own FX apps, they can sometimes interfere with ViPER. Run the command below to uninstall these:\n' +
-            '```adb shell "pm uninstall -k --user 0 com.android.musicfx; pm uninstall -k --user 0 com.dolby.dax2appUI"```',
+            '```adb shell "pm uninstall -k --user 0 com.android.musicfx; pm uninstall -k --user 0 com.dolby.dax2appUI; pm uninstall -k --user 0 com.motorola.dolby.dolbyui"```',
         },
         {
           name: 'Download',
