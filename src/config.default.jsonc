@@ -38,7 +38,7 @@
       "outageCritical": { "code": "<:outageCritical:729470302513528882>", "icon": "📕" },
       "outageUnknown": { "code": "<:outageUnknown:729471104749404162>", "icon": "❔" },
       "upload": { "code": "<:upload:730154186234134631>", "icon": "↥" },
-      "download":{"code":"<:download:730154186683187200>", "icon":""}
+      "download": { "code": "<:download:730154186683187200>", "icon": "" }
     }
   }
 }
