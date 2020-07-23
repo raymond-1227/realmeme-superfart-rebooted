@@ -47,7 +47,7 @@ module.exports.handler = async function ViperInstallation(message, client, data)
             '**1.** Download the attached file and install it\n' +
             '**2.** Launch the app and grant superuser permission\n' +
             '**3.** Run the `adb` command below\n' +
-            '**4.** Go into ViPER settings and toggle the two options at the top off and on again',
+            '**4.** Go into ViPER settings and toggle the two options at the top on and off again',
         },
         {
           name: 'Troubleshooting',
