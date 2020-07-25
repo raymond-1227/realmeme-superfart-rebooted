@@ -1,4 +1,5 @@
 const Help = require('./Generic/Help');
+const LMGTFY = require('./Generic/LMGTFY');
 
 const SendGuideUrl = require('./Realme/SendGuideUrl');
 const TheBestRomIsALie = require('./Realme/TheBestRomIsALie');
@@ -17,6 +18,7 @@ const Diagnostics = require('./Admin/Diagnostics');
 
 module.exports = [
   Help,
+  LMGTFY,
   SendGuideUrl,
   TheBestRomIsALie,
   Magisk,
