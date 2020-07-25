@@ -1,4 +1,4 @@
-const Permissions = require('../data/Permissions');
+const Permissions = require('../../data/Permissions');
 module.exports.commandInfo = {
   trigger: 'changestatus',
   usage: 'changestatus',
@@ -8,12 +8,12 @@ module.exports.commandInfo = {
   permissionsNeeded: Permissions.Admin,
 };
 
-const Config = require('../Config');
-const Log = require('../Utils/Log');
+const Config = require('../../Config');
+const Log = require('../../Utils/Log');
 
 const AllowedUsers = [Config.resources.userIds.mrjeeves, Config.resources.userIds.gamr13];
 
-const { SetRandomStatus } = require('../RichPresence/setUpRichPresence');
+const { SetRandomStatus } = require('../../RichPresence/setUpRichPresence');
 
 module.exports.handler = async function Diagnostics(message, client, data) {
   const content = message.content.toLowerCase();

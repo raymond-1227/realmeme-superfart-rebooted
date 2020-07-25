@@ -1,4 +1,4 @@
-const Permissions = require('../data/Permissions');
+const Permissions = require('../../data/Permissions');
 module.exports.commandInfo = {
   trigger: 'xda',
   usage: 'xda <device name>',
@@ -8,7 +8,7 @@ module.exports.commandInfo = {
   permissionsNeeded: Permissions.User,
 };
 
-const Config = require('../Config');
+const Config = require('../../Config');
 
 const Fuse = require('fuse.js');
 const { MessageEmbed, MessageAttachment } = require('discord.js');

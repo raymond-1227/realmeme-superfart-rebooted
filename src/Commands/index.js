@@ -1,15 +1,19 @@
-const Help = require('./Help');
+const Help = require('./Generic/Help');
 
-const SendGuideUrl = require('./SendGuideUrl');
-const TheBestRomIsALie = require('./TheBestRomIsALie');
-const XDA = require('./XDA');
+const SendGuideUrl = require('./Realme/SendGuideUrl');
+const TheBestRomIsALie = require('./Realme/TheBestRomIsALie');
 
-const Magisk = require('./Magisk');
-const ViperInstallation = require('./ViperInstallation');
+// Android Utils
+const Magisk = require('./Android_Utils/Magisk');
+const XDA = require('./Android_Utils/XDA');
 
-const ChangeStatus = require('./ChangeStatus');
-const CleanUp = require('./CleanUp');
-const Diagnostics = require('./Diagnostics');
+// Apps
+const ViperInstallation = require('./Android_Utils/Apps/ViperInstallation');
+
+// Admin
+const ChangeStatus = require('./Admin/ChangeStatus');
+const CleanUp = require('./Admin/CleanUp');
+const Diagnostics = require('./Admin/Diagnostics');
 
 module.exports = [
   Help,

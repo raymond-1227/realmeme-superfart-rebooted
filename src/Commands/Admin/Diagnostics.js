@@ -1,4 +1,4 @@
-const Permissions = require('../data/Permissions');
+const Permissions = require('../../data/Permissions');
 module.exports.commandInfo = {
   trigger: 'diagnostics',
   usage: 'diagnostics',
@@ -11,8 +11,8 @@ module.exports.commandInfo = {
 const moment = require('moment');
 const fetch = require('node-fetch');
 
-const Config = require('../Config');
-const Log = require('../Utils/Log');
+const Config = require('../../Config');
+const Log = require('../../Utils/Log');
 
 const AllowedUsers = [Config.resources.userIds.mrjeeves, Config.resources.userIds.gamr13];
 
@@ -22,7 +22,7 @@ module.exports.handler = async function Diagnostics(message, client, data) {
   const content = message.content.toLowerCase();
 
   if (content.startsWith(`${Config.commandPrefix}diagnostics`)) {
-    const { version: BotVersion } = require('../../package.json');
+    const { version: BotVersion } = require('../../../package.json');
 
     const loadMsg = await message.channel.send(
       `${Config.resources.emojis.loading.code}  ${Config.resources.strings.loading} (⏱️ Initialising)`

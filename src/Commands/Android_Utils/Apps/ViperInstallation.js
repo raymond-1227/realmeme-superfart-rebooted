@@ -1,4 +1,4 @@
-const Permissions = require('../data/Permissions');
+const Permissions = require('../../../data/Permissions');
 module.exports.commandInfo = {
   trigger: 'viper',
   usage: 'viper [@mention(s)]',
@@ -8,9 +8,9 @@ module.exports.commandInfo = {
   permissionsNeeded: Permissions.User,
 };
 
-const Config = require('../Config');
+const Config = require('../../../Config');
 const { MessageEmbed } = require('discord.js');
-const Log = require('../Utils/Log');
+const Log = require('../../../Utils/Log');
 
 module.exports.handler = async function ViperInstallation(message, client, data) {
   const content = message.content.toLowerCase();
@@ -20,7 +20,7 @@ module.exports.handler = async function ViperInstallation(message, client, data)
 
     let viperInfo = null;
     try {
-      viperInfo = require('../../files/ViPER/versions.json');
+      viperInfo = require('../../../../files/ViPER/versions.json');
     } catch (err) {
       Log('Error fetching ViPER info', Log.SEVERITY.WARN);
       reply.edit(`${Config.resources.emojis.fail.code} An error ocurred. <@${Config.resources.userIds.mrjeeves}>`);

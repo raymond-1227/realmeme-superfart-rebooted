@@ -1,4 +1,4 @@
-const Permissions = require('../data/Permissions');
+const Permissions = require('../../data/Permissions');
 module.exports.commandInfo = {
   trigger: 'magisk',
   usage: 'magisk [@mention(s)]',
@@ -8,9 +8,9 @@ module.exports.commandInfo = {
   permissionsNeeded: Permissions.User,
 };
 
-const Config = require('../Config');
+const Config = require('../../Config');
 const { MessageEmbed } = require('discord.js');
-const Log = require('../Utils/Log');
+const Log = require('../../Utils/Log');
 
 module.exports.handler = async function Magisk(message, client, data) {
   const content = message.content.toLowerCase();
@@ -20,7 +20,7 @@ module.exports.handler = async function Magisk(message, client, data) {
 
     let magiskInfo = null;
     try {
-      magiskInfo = require('../../files/Magisk/versions.json');
+      magiskInfo = require('../../../files/Magisk/versions.json');
     } catch (err) {
       Log('Error fetching Magisk info', Log.SEVERITY.WARN);
       reply.edit(`${Config.resources.emojis.fail.code} An error ocurred. <@${Config.resources.userIds.mrjeeves}>`);

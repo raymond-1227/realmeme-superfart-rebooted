@@ -1,4 +1,4 @@
-const Permissions = require('../data/Permissions');
+const Permissions = require('../../data/Permissions');
 module.exports.commandInfo = {
   trigger: 'bestrom',
   usage: 'bestrom [@mention(s)]',
@@ -8,9 +8,9 @@ module.exports.commandInfo = {
   permissionsNeeded: Permissions.User,
 };
 
-const Log = require('../Utils/Log');
+const Log = require('../../Utils/Log');
 
-const Config = require('../Config');
+const Config = require('../../Config');
 
 module.exports.handler = async function TheBestRomIsALie(message, client, data) {
   const content = message.content.toLowerCase();

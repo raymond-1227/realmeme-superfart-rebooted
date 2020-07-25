@@ -1,4 +1,4 @@
-const Permissions = require('../data/Permissions');
+const Permissions = require('../../data/Permissions');
 module.exports.commandInfo = {
   trigger: 'cleanup',
   usage: 'cleanup',
@@ -8,8 +8,8 @@ module.exports.commandInfo = {
   permissionsNeeded: Permissions.Admin,
 };
 
-const Config = require('../Config');
-const Log = require('../Utils/Log');
+const Config = require('../../Config');
+const Log = require('../../Utils/Log');
 
 const AllowedUsers = [Config.resources.userIds.mrjeeves, Config.resources.userIds.gamr13];
 

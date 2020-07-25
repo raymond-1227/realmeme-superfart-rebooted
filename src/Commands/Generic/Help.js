@@ -1,4 +1,4 @@
-const Permissions = require('../data/Permissions');
+const Permissions = require('../../data/Permissions');
 module.exports.commandInfo = {
   trigger: 'help',
   usage: 'help',
@@ -8,7 +8,7 @@ module.exports.commandInfo = {
   permissionsNeeded: Permissions.User,
 };
 
-const Config = require('../Config');
+const Config = require('../../Config');
 const { MessageEmbed } = require('discord.js');
 
 const AdminUsers = [Config.resources.userIds.mrjeeves, Config.resources.userIds.gamr13];

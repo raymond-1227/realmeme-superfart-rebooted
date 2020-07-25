@@ -1,4 +1,4 @@
-const Permissions = require('../data/Permissions');
+const Permissions = require('../../data/Permissions');
 module.exports.commandInfo = {
   trigger: 'guide',
   usage: 'guide [@mention(s)]',
@@ -8,7 +8,7 @@ module.exports.commandInfo = {
   permissionsNeeded: Permissions.User,
 };
 
-const Config = require('../Config');
+const Config = require('../../Config');
 const { MessageEmbed } = require('discord.js');
 
 module.exports.handler = async function SendGuideUrl(message, client, data) {
