@@ -15,9 +15,10 @@
     "channelIds": {
       "realme_x_series": "633537276588064768",
       "whitelistedChannels": [
-        "455746768353755139", // #general in Emojis
-        "729418543581495398", // #greetings in Emojis
-        "633537276588064768" // #realme_x_series in realme discord
+        //! Empty array = no whitelist
+        // "455746768353755139", // #general in Emojis
+        // "729418543581495398", // #greetings in Emojis
+        // "633537276588064768" // #realme_x_series in realme discord
       ]
     },
     "urls": {
