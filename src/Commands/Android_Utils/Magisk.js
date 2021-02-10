@@ -78,12 +78,14 @@ module.exports.handler = async function Magisk(message, client, data) {
             '**3.** Try installing the Magisk 20.3 zip file instead as the FALLBACK OPTION',
         },
         {
-          name: 'Download latest',inline: true,
+          name: 'Download latest',
+          inline: true,
           value: `[Download Magisk ${magiskLatest.versionNumber}](${magiskLatest.downloadURL})
 [Download Magisk Uninstaller](${magiskLatest.downloadURLUninstaller})`,
         },
         {
-          name: `Download ${fallbackMagisk.versionNumber}`, inline: true,
+          name: `Download ${fallbackMagisk.versionNumber}`,
+          inline: true,
           value: `[Download Magisk ${fallbackMagisk.versionNumber}](${fallbackMagisk.downloadURL})
 [Download Magisk ${fallbackMagisk.versionNumber} Uninstaller](${fallbackMagisk.downloadURLUninstaller})`,
         },
