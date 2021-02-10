@@ -3,15 +3,21 @@
   "versions": {
     "latest": {
       "image": "https://raw.githubusercontent.com/davwheat/realmeme-superfart-discord-bot/master/files/Magisk/Magisk.png",
-      "versionNumber": "20.3",
-      "downloadURL": "https://raw.githubusercontent.com/davwheat/realmeme-superfart-discord-bot/master/files/Magisk/Magisk-v20.3.zip",
-      "downloadURLUninstaller": "https://raw.githubusercontent.com/davwheat/realmeme-superfart-discord-bot/master/files/Magisk/Magisk-uninstaller-20200110.zip"
+      "versionNumber": "21.4",
+      "downloadURL": "https://raw.githubusercontent.com/davwheat/realmeme-superfart-discord-bot/master/files/Magisk/Magisk-v21.4.zip",
+      "downloadURLUninstaller": "https://raw.githubusercontent.com/davwheat/realmeme-superfart-discord-bot/master/files/Magisk/Magisk-uninstaller-20210117.zip"
     },
     "20.3": {
       "image": "https://raw.githubusercontent.com/davwheat/realmeme-superfart-discord-bot/master/files/Magisk/Magisk.png",
       "versionNumber": "20.3",
       "downloadURL": "https://raw.githubusercontent.com/davwheat/realmeme-superfart-discord-bot/master/files/Magisk/Magisk-v20.3.zip",
       "downloadURLUninstaller": "https://raw.githubusercontent.com/davwheat/realmeme-superfart-discord-bot/master/files/Magisk/Magisk-uninstaller-20200110.zip"
+    },
+    "21.4": {
+      "image": "https://raw.githubusercontent.com/davwheat/realmeme-superfart-discord-bot/master/files/Magisk/Magisk.png",
+      "versionNumber": "21.4",
+      "downloadURL": "https://raw.githubusercontent.com/davwheat/realmeme-superfart-discord-bot/master/files/Magisk/Magisk-v21.4.zip",
+      "downloadURLUninstaller": "https://raw.githubusercontent.com/davwheat/realmeme-superfart-discord-bot/master/files/Magisk/Magisk-uninstaller-20210117.zip"
     }
   }
 }
