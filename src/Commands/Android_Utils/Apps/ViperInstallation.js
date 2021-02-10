@@ -37,7 +37,7 @@ module.exports.handler = async function ViperInstallation(message, client, data)
       .setThumbnail(viperLatest.image)
       // Set the main content of the embed
       .setDescription(
-        "The audio on the X2 Pro is pretty terrible without using some audio effects app, and that's what ViPER is for."
+        "**This does not work on realme UI.**\n\nThe audio on the X2 Pro is pretty terrible without using some audio effects app, and that's what ViPER is for."
       )
       .setURL(viperInfo.officialUrl)
       .addFields([
