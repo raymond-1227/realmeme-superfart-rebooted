@@ -10,13 +10,12 @@ module.exports.commandInfo = {
 
 const Config = require('../../Config');
 const { MessageEmbed } = require('discord.js');
+const DoesMessageMatchCommand = require('../../Utils/DoesMessageMatchCommand');
 
 const AdminUsers = [Config.resources.userIds.mrjeeves, Config.resources.userIds.gamr13];
 
 module.exports.handler = async function Help(message, client, data) {
-  const content = message.content.toLowerCase();
-
-  if (content.startsWith(`${Config.commandPrefix}help`) || content.startsWith(`${Config.commandPrefix}commands`)) {
+  if (DoesMessageMatchCommand(message, module.exports.commandInfo)) {
     const { allCommands: AllCommands } = data;
     let CommandData = [];
 
