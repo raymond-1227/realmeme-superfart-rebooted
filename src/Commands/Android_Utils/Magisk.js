@@ -28,6 +28,7 @@ module.exports.handler = async function Magisk(message, client, data) {
     }
 
     const magiskLatest = magiskInfo.versions.latest;
+	const fallbackMagisk = magiskInfo.versions["20.3"];
 
     const embed = new MessageEmbed()
       // Set the title of the field
@@ -69,9 +70,16 @@ module.exports.handler = async function Magisk(message, client, data) {
             '**2.** Flash it in TWRP/OrangeFox\n' +
             '**3.** Reboot\n',
         },
+		{
+		  name: 'If you bootloop...',
+		  value:
+		  '**1.** Reboot to recovery by holding Volume up and Power to reboot\n'
+		  '**2.** Install the Magisk_Uninstaller.zip file\n'
+		  '**3.** Try installing the Magisk 20.3 zip file instead as the FALLBACK OPTION'
+		},
         {
           name: 'Download',
-          value: `[Download Magisk ${magiskLatest.versionNumber}](${magiskLatest.downloadURL})\n[Download Magisk Uninstaller](${magiskLatest.downloadURLUninstaller})`,
+          value: `[Download Magisk ${magiskLatest.versionNumber}](${magiskLatest.downloadURL})\n[Download Magisk Uninstaller](${magiskLatest.downloadURLUninstaller})\n\n[FALLBACK OPTION: Download Magisk ${fallbackMagisk.versionNumber}](${fallbackMagisk.downloadURL})\n[Download Magisk ${fallbackMagisk.versionNumber} Uninstaller] (${fallbackMagisk.downloadURLUninstaller})`,
         },
       ])
       .setFooter(`${Config.resources.emojis.stopwatch.icon} Calculating...`);
