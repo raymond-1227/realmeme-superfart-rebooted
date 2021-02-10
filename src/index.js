@@ -53,7 +53,7 @@ client.on('message', (msg) => {
   }
 
   // Iterate through command handlers until one is triggered
-  CommandHandlers.every(async (Command) => {
+  CommandHandlers.some(async (Command) => {
     const result = await Command.handler(msg, client, {
       allCommands: CommandHandlers,
     });
@@ -63,8 +63,9 @@ client.on('message', (msg) => {
     }
 
     // break for loop if command gets handled
-    if (result) return false;
-    else return true;
+    if (result) return true;
+
+    return false;
   });
 });
 
