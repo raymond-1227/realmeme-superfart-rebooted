@@ -3,6 +3,7 @@ const LMGTFY = require('./Generic/LMGTFY');
 
 const SendGuideUrl = require('./Realme/SendGuideUrl');
 const TheBestRomIsALie = require('./Realme/TheBestRomIsALie');
+const FAQ = require('./Realme/faq');
 
 // Android Utils
 const Magisk = require('./Android_Utils/Magisk');
@@ -21,6 +22,7 @@ module.exports = [
   LMGTFY,
   SendGuideUrl,
   TheBestRomIsALie,
+  FAQ,
   Magisk,
   ViperInstallation,
   XDA,
