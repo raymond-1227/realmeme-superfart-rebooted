@@ -83,8 +83,35 @@ module.exports.handler = async function SendGuideUrl(message, client, data) {
         `Just pop us a message in <#${Config.resources.channelIds.realme_x_series}> and we'll help you as best we can.`,
         false
       );
-	  
+	 .setFooter(`${Config.resources.emojis.stopwatch.icon} Calculating...`);
   
-  
-  
-}
+let pings = '';
+
+    if (message.mentions.members.length > 0) {
+      pings = 'Hey ';
+
+      Array.from(message.mentions.members.keys()).forEach((userId) => {
+        pings += `<@${userId}> `;
+      });
+    }
+
+    // Send the embed to the same channel as the message
+    await reply.edit({
+      content: `${Config.resources.emojis.success.code} Done! ${pings}`,
+      embed: embed,
+    });
+
+    setTimeout(async () => {
+      embed.setFooter(
+        `${Config.resources.emojis.stopwatch.icon} Message generated in ${reply.createdAt - message.createdAt}ms`
+      );
+      await reply.edit({ embed: embed });
+    }, 250);
+
+    // handled
+    return true;
+  }
+
+  // not handled
+  return false;
+};
