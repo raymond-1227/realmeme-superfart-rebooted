@@ -44,17 +44,22 @@ module.exports.handler = async function Magisk(message, client, data) {
         {
           name: 'Installation',
           value:
-            '**1.** Download the ZIP via the link below\n' + '**2.** Flash it in TWRP/OrangeFox\n' + '**3.** Reboot\n',
+            '**1.** Download the ZIP via the link below\n' +
+            '**2.** Flash it in TWRP/OrangeFox\n' +
+            '**3.** Reboot\n' +
+            '**4.** Open Magisk Manager\n' +
+            '**5.** Tap Settings at the top-right\n' +
+            '**6.** Scroll down and enable Magisk Hide\n' +
+            '**7.** Tap "Hide Magisk Manager" above Magisk Hide\n',
         },
         {
           name: 'Root detection',
           value:
             'Some apps might detect Magisk and refuse to work. Please perform these steps if that happens:\n' +
             '**1.** Open Magisk Manager\n' +
-            '**2.** Tap the menu and go to Magisk Hide\n' +
-            '**3.** Tick the circle next to the app which detected root\n' +
-            '**4.** In the menu, go to Settings, then tap Hide Magisk Manager\n' +
-            '**5.** Press Ok on the pop-up dialog\n\n' +
+            '**2.** Tap the Shield at the bottom\n' +
+            '**3.** Tap Magisk Hide\n' +
+            '**4.** Tick the app(s) which detected root\n\n' +
             "You might need to clear the app's data and cache, too.",
         },
         {
