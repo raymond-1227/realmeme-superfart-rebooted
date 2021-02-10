@@ -31,5 +31,52 @@ module.exports.handler = async function ViperInstallation(message, client, data)
 	
 	const embed = new MessageEmbed()
 	.setTitle(`JamesDSP ${viperLatest.versionNumber}`)
+	.setColor(Config.colors.primary)
+    .setThumbnail(viperLatest.image)
+	.setDescription("JamesDSP is an alternative to ViPER4Android.")
+	.setURL(viperInfo.officialUrl)
+      .addFields([
+	   {
+          name: 'Installation',
+          value:
+            '**1.** Download the attached file and install it in Magisk\n' +
+            '**2.** Launch the app and grant superuser permission if asked\n' +
+            '**2.** Play around with it as you wish.',
+        },
+		 {
+          name: 'Download',
+          value: `[Download ViPER4Android ${viperLatest.versionNumber}](${viperLatest.downloadURL})`,
+        },
+      ])
+      .setFooter(`${Config.resources.emojis.stopwatch.icon} Calculating...`);
   
-}
+let pings = '';
+
+    if (message.mentions.members.length > 0) {
+      pings = 'Hey ';
+
+      Array.from(message.mentions.members.keys()).forEach((userId) => {
+        pings += `<@${userId}> `;
+      });
+    }
+
+    // Send the embed to the same channel as the message
+    await reply.edit({
+      content: `${Config.resources.emojis.success.code} Done! ${pings}`,
+      embed: embed,
+    });
+
+    setTimeout(async () => {
+      embed.setFooter(
+        `${Config.resources.emojis.stopwatch.icon} Message generated in ${reply.createdAt - message.createdAt}ms`
+      );
+      await reply.edit({ embed: embed });
+    }, 250);
+
+    // handled
+    return true;
+  }
+
+  // not handled
+  return false;
+};
