@@ -81,7 +81,7 @@ module.exports.handler = async function Magisk(message, client, data) {
           name: 'Download latest',
           inline: true,
           value: `[Download Magisk ${magiskLatest.versionNumber}](${magiskLatest.downloadURL})
-[Download Magisk Uninstaller](${magiskLatest.downloadURLUninstaller})`,
+[Download Magisk ${magiskLatest.versionNumber} Uninstaller](${magiskLatest.downloadURLUninstaller})`,
         },
         {
           name: `Download ${fallbackMagisk.versionNumber}`,
