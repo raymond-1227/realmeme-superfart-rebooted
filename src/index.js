@@ -11,6 +11,14 @@ const Log = require('./Utils/Log');
 const CommandHandlers = require('./Commands');
 const setUpRichPresence = require('./RichPresence/setUpRichPresence');
 
+const asyncSome = async (arr, predicate) => {
+  for (let e of arr) {
+    if (await predicate(e)) return true;
+  }
+
+  return false;
+};
+
 let totalErrorsThisSession = 0;
 
 function newError() {
@@ -53,19 +61,16 @@ client.on('message', (msg) => {
   }
 
   // Iterate through command handlers until one is triggered
-  CommandHandlers.some(async (Command) => {
+  asyncSome(CommandHandlers, async (Command) => {
     const result = await Command.handler(msg, client, {
       allCommands: CommandHandlers,
     });
 
     if (result) {
       Log.Helpers.CommandRun(msg, Command.commandInfo.trigger);
+      // break for loop if command gets handled
+      return true;
     }
-
-    // break for loop if command gets handled
-    if (result) return true;
-
-    return false;
   });
 });
 
