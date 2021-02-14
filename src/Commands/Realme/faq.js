@@ -10,6 +10,7 @@ module.exports.commandInfo = {
 
 const Config = require('../../Config');
 const { MessageEmbed } = require('discord.js');
+const GetPings = require('../../Utils/GetPings');
 
 module.exports.handler = async function SendGuideUrl(message, client, data) {
   const content = message.content.toLowerCase();
@@ -82,19 +83,11 @@ module.exports.handler = async function SendGuideUrl(message, client, data) {
       )
       .setFooter(`${Config.resources.emojis.stopwatch.icon} Calculating...`);
 
-    let pings = '';
-
-    if (message.mentions.members.length > 0) {
-      pings = 'Hey ';
-
-      Array.from(message.mentions.members.keys()).forEach((userId) => {
-        pings += `<@${userId}> `;
-      });
-    }
+    const pingText = GetPings(message);
 
     // Send the embed to the same channel as the message
     await reply.edit({
-      content: `${Config.resources.emojis.success.code} Done! ${pings}`,
+      content: `${Config.resources.emojis.success.code} Done! ${pingText}`,
       embed: embed,
     });
 

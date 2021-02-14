@@ -10,6 +10,7 @@ const Magisk = require('./Android_Utils/Magisk');
 const XDA = require('./Android_Utils/XDA');
 
 // Apps
+const JamesDSP = require('./Android_Utils/Apps/JamesDSP');
 const ViperInstallation = require('./Android_Utils/Apps/ViperInstallation');
 
 // Admin
@@ -24,6 +25,7 @@ module.exports = [
   TheBestRomIsALie,
   FAQ,
   Magisk,
+  JamesDSP,
   ViperInstallation,
   XDA,
   ChangeStatus,

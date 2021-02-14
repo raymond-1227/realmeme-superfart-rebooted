@@ -8,9 +8,14 @@ module.exports.commandInfo = {
   permissionsNeeded: Permissions.User,
 };
 
+const MessageText = `__**There is no "best ROM".**__ One person's favourite ROM won't be the same as someone else's favourite ROM.
+
+The real best ROM is the one which you enjoy using the most, find the most stable, and has the features you want to use.`;
+
 const Log = require('../../Utils/Log');
 
 const Config = require('../../Config');
+const GetPings = require('../../Utils/GetPings');
 
 module.exports.handler = async function TheBestRomIsALie(message, client, data) {
   const content = message.content.toLowerCase();
@@ -18,29 +23,10 @@ module.exports.handler = async function TheBestRomIsALie(message, client, data) 
   //#region Actual command
 
   if (content.startsWith(`${Config.commandPrefix}best rom`) || content.startsWith(`${Config.commandPrefix}bestrom`)) {
-    let pings = '';
-
-    if (message.mentions.members.size > 0) {
-      Array.from(message.mentions.members.keys()).forEach((userId) => {
-        pings += `<@${userId}> `;
-      });
-    }
+    const pingText = GetPings(message);
 
     // Send the embed to the same channel as the message
-    if (pings) {
-      await message.channel.send(
-        pings +
-          "__**There is no \"best ROM\"!**__ One person's favourite ROM won't be the same as someone else's favourite ROM." +
-          '\n\n' +
-          'The real best ROM is the one which you enjoy using the most, find the most stable, and has the features you want to use.'
-      );
-    } else {
-      await message.channel.send(
-        "__**There is no \"best ROM\".**__ One person's favourite ROM won't be the same as someone else's favourite ROM." +
-          '\n\n' +
-          'The real best ROM is the one which you enjoy using the most, find the most stable, and has the features you want to use.'
-      );
-    }
+    await message.channel.send((pingText ? `${pingText}\n\n` : '') + MessageText);
 
     // handled
     return true;
@@ -53,11 +39,7 @@ module.exports.handler = async function TheBestRomIsALie(message, client, data) 
   if (content.includes('best rom') && !content.includes('no ')) {
     Log.Helpers.CommandTriggered(message, 'best rom');
 
-    await message.reply(
-      "**There is no \"best ROM\".** One person's favourite ROM won't be the same as someone else's favourite ROM." +
-        '\n\n' +
-        'The real best ROM is the one which you enjoy using the most, find the most stable, and has the features you want to use.'
-    );
+    await message.reply(MessageText);
 
     // handled
     return true;

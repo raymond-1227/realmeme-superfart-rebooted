@@ -12,6 +12,7 @@ const Config = require('../../Config');
 
 const Fuse = require('fuse.js');
 const { MessageEmbed, MessageAttachment } = require('discord.js');
+const DoesMessageMatchCommand = require('../../Utils/DoesMessageMatchCommand');
 
 const options = {
   includeScore: true,
@@ -26,58 +27,53 @@ const options = {
 module.exports.handler = async function XDA(message, client, data) {
   const content = message.content.toLowerCase();
 
-  if (content.startsWith(`${Config.commandPrefix}xda`)) {
-    const args = content.substr(`${Config.commandPrefix}xda`.length);
+  if (!DoesMessageMatchCommand(message, module.exports.commandInfo)) return false;
 
-    // Source: https://realmeupdater.com/supported/
-    const xdaUrls = require('../data/DeviceXDAList');
+  const args = content.substr(`${Config.commandPrefix}xda`.length);
 
-    const fuse = new Fuse(xdaUrls, options);
+  // Source: https://realmeupdater.com/supported/
+  const xdaUrls = require('../../data/DeviceXDAList');
 
-    const xdaResult = await fuse.search(args)[0];
+  const fuse = new Fuse(xdaUrls, options);
 
-    if (typeof xdaResult === 'undefined') {
-      await message.channel.send(
-        `${Config.resources.emojis.fail.code} Couldn't find specified realme device on XDA <@${message.author.id}>\n\nTry seaching by its device codename (e.g. RMX1931)`
-      );
-      return true;
-    }
+  const xdaResult = await fuse.search(args)[0];
 
-    const xdaLogoAttachment = new MessageAttachment('img/xda_logo.png', 'xda_logo.png');
-
-    const embed = new MessageEmbed()
-      .attachFiles(xdaLogoAttachment)
-      .setThumbnail('attachment://xda_logo.png')
-      // Set the title of the field
-      .setTitle(`${xdaResult.item.fullName} on XDA`)
-      // Set the color of the embed
-      .setColor(Config.colors.primary)
-      .setURL(xdaResult.item.url)
-      .setDescription(
-        `View the official XDA Forums for your device, containing custom ROMs, kernels, guides, and more.`
-      )
-      .addField('Known codenames', xdaResult.item.deviceCodes.join(', '))
-      .setFooter(`${Config.resources.emojis.stopwatch.icon} Calculating...`);
-
-    // Send the embed to the same channel as the message
-    const reply = await message.channel.send({
-      content: ``,
-      embed: embed,
-    });
-
-    setTimeout(async () => {
-      embed.setFooter(
-        `${Config.resources.emojis.stopwatch.icon} Message generated in ${
-          reply.createdAt - message.createdAt
-        }ms (Search score: ${Math.round(xdaResult.score * 10000) / 10000})`
-      );
-      await reply.edit({ embed: embed });
-    }, 250);
-
-    // handled
+  if (typeof xdaResult === 'undefined') {
+    await message.channel.send(
+      `${Config.resources.emojis.fail.code} Couldn't find specified realme device on XDA <@${message.author.id}>\n\nTry seaching by its device codename (e.g. RMX1931)`
+    );
     return true;
   }
 
-  // not handled
-  return false;
+  const xdaLogoAttachment = new MessageAttachment('img/xda_logo.png', 'xda_logo.png');
+
+  const embed = new MessageEmbed()
+    .attachFiles(xdaLogoAttachment)
+    .setThumbnail('attachment://xda_logo.png')
+    // Set the title of the field
+    .setTitle(`${xdaResult.item.fullName} on XDA`)
+    // Set the color of the embed
+    .setColor(Config.colors.primary)
+    .setURL(xdaResult.item.url)
+    .setDescription(`View the official XDA Forums for your device, containing custom ROMs, kernels, guides, and more.`)
+    .addField('Known codenames', xdaResult.item.deviceCodes.join(', '))
+    .setFooter(`${Config.resources.emojis.stopwatch.icon} Calculating...`);
+
+  // Send the embed to the same channel as the message
+  const reply = await message.channel.send({
+    content: ``,
+    embed: embed,
+  });
+
+  setTimeout(async () => {
+    embed.setFooter(
+      `${Config.resources.emojis.stopwatch.icon} Message generated in ${
+        reply.createdAt - message.createdAt
+      }ms (Search score: ${Math.round(xdaResult.score * 10000) / 10000})`
+    );
+    await reply.edit({ embed: embed });
+  }, 250);
+
+  // handled
+  return true;
 };
