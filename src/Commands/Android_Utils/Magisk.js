@@ -78,7 +78,7 @@ module.exports.handler = async function Magisk(message, client, data) {
         value:
           '**1.** Reboot to recovery by holding Volume up and Power to reboot\n' +
           '**2.** Install the Magisk_Uninstaller.zip file\n' +
-          '**3.** Try installing the Magisk 20.3 zip file instead as the FALLBACK OPTION',
+          `**3.** Try installing the Magisk ${FALLBACK_VERSION} zip file instead as the FALLBACK OPTION`,
       },
       {
         name: 'Download latest',
