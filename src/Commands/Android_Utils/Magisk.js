@@ -8,6 +8,8 @@ module.exports.commandInfo = {
   permissionsNeeded: Permissions.User,
 };
 
+const FALLBACK_VERSION = '21.4';
+
 const Config = require('../../Config');
 const { MessageEmbed } = require('discord.js');
 const Log = require('../../Utils/Log');
@@ -29,7 +31,7 @@ module.exports.handler = async function Magisk(message, client, data) {
   }
 
   const magiskLatest = magiskInfo.versions.latest;
-  const fallbackMagisk = magiskInfo.versions['20.3'];
+  const fallbackMagisk = magiskInfo.versions[FALLBACK_VERSION];
 
   const embed = new MessageEmbed()
     // Set the title of the field
