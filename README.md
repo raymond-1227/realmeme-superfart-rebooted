@@ -1,6 +1,6 @@
-# hackerman14
+# realmeme SuperFART Rebooted
 
-Read more about the bot via [Top.gg Bot Page](https://top.gg/bot/619613322903420929)
+This is a community Discord bot project based on the repo [davwheat/realmeme-superfart-discord-bot](https://github.com/davwheat/realmeme-superfart-discord-bot), and was re-coded based on [hackerman14/bot-codes](https://github.com/hackerman14/bot-codes), although not all commands remain the same or still exists, but I'll try my best to make all commands alive again in a form of slash commands.
 
 ## Self Hosting
 
