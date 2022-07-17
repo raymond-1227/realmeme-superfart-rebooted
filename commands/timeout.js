@@ -1,22 +1,29 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { PermissionFlagsBits } = require("discord-api-types/v10");
+const ms = require("ms");
 const rules = require("../rules.json");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("ban")
-    .setDescription("Bans the user from the server.")
-    .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+    .setName("timeout")
+    .setDescription("Timeout a user from interacting with the server.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
     .addUserOption((option) =>
       option
         .setName("user")
-        .setDescription("The user you want to ban")
+        .setDescription("The user you want to timeout")
+        .setRequired(true)
+    )
+    .addStringOption((option) =>
+      option
+        .setName("time")
+        .setDescription("Set a time for the timeout")
         .setRequired(true)
     )
     .addStringOption((option) =>
       option
         .setName("rule")
-        .setDescription("Select a rule why you are banning the user")
+        .setDescription("Select a rule why you are kicking the user")
         .addChoices({ name: "Rule 1 - Pings", value: "rule1" })
         .addChoices({ name: "Rule 2 - NSFW", value: "rule2" })
         .addChoices({ name: "Rule 3 - Insults", value: "rule3" })
@@ -39,7 +46,7 @@ module.exports = {
     .addStringOption((option) =>
       option
         .setName("details")
-        .setDescription("Add details to the ban if necessary")
+        .setDescription("Add details to the kick if necessary.")
     ),
 
   async execute(interaction) {
@@ -50,6 +57,7 @@ module.exports = {
       (await interaction.guild.members.fetch(user.id).catch((err) => {}));
     let rule = interaction.options.getString("rule");
     let details = interaction.options.getString("details");
+    let time = ms(interaction.options.getString("time"));
     let reason;
     
     if (details == null) {
@@ -77,19 +85,7 @@ module.exports = {
           {
             color: "#f04a47",
             title: "**Punishment System**",
-            description: "HEY DON'T BAN ME!!!!111!!11",
-          },
-        ],
-        ephemeral: true,
-      });
-
-    if (!member.bannable)
-      return interaction.reply({
-        embeds: [
-          {
-            color: "#f04a47",
-            title: "**Punishment System**",
-            description: "I can't ban that user!",
+            description: "can you even timeout a discord bot...",
           },
         ],
         ephemeral: true,
@@ -103,16 +99,30 @@ module.exports = {
           {
             color: "#f04a47",
             title: "**Punishment System**",
-            description: "You can't ban someone with a role higher than yours!",
+            description:
+              "You can't timeout someone with a role higher than yours!",
           },
         ],
         ephemeral: true,
       });
+
+    if (!time)
+      return interaction.reply({
+        embeds: [
+          {
+            color: "#f04a47",
+            title: "**Punishment System**",
+            description: "The time you provided is not valid!",
+          },
+        ],
+        ephemeral: true,
+      });
+
     await interaction.reply({
       embeds: [
         {
           color: "#43b582",
-          description: `<:botSuccess:956980119086465124> ***${user.tag} was banned*** | ${reason}`,
+          description: `<:botSuccess:956980119086465124> ***${user.tag} was timed out*** | ${reason}`,
         },
       ],
     });
@@ -120,7 +130,7 @@ module.exports = {
       embeds: [
         {
           color: "#f04a47",
-          description: `You were banned from ${guild.name} | ${reason}`,
+          description: `You were timed out from ${guild.name} | ${reason}`,
         },
         {
           color: "#ffc916",
@@ -129,6 +139,6 @@ module.exports = {
         },
       ],
     });
-    await member.ban({ reason: reason });
+    await member.timeout(time, reason);
   },
 };

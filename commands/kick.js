@@ -1,22 +1,22 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { PermissionFlagsBits } = require("discord-api-types/v10");
+const { PermissionFlagsBits } = require('discord-api-types/v10');
 const rules = require("../rules.json");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("ban")
-    .setDescription("Bans the user from the server.")
-    .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+    .setName("kick")
+    .setDescription("Kicks the user from the server.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
     .addUserOption((option) =>
       option
         .setName("user")
-        .setDescription("The user you want to ban")
+        .setDescription("The user you want to kick")
         .setRequired(true)
     )
     .addStringOption((option) =>
       option
         .setName("rule")
-        .setDescription("Select a rule why you are banning the user")
+        .setDescription("Select a rule why you are kicking the user")
         .addChoices({ name: "Rule 1 - Pings", value: "rule1" })
         .addChoices({ name: "Rule 2 - NSFW", value: "rule2" })
         .addChoices({ name: "Rule 3 - Insults", value: "rule3" })
@@ -35,11 +35,12 @@ module.exports = {
         })
         .addChoices({ name: "Rule 14 - Other", value: "rule14" })
         .setRequired(true)
+        
     )
     .addStringOption((option) =>
       option
         .setName("details")
-        .setDescription("Add details to the ban if necessary")
+        .setDescription("Add details to the kick if necessary")
     ),
 
   async execute(interaction) {
@@ -57,6 +58,7 @@ module.exports = {
     } else {
       reason = rules[rule].name + ": " + details;
     }
+
 
     if (!member)
       return interaction.reply({
@@ -82,14 +84,14 @@ module.exports = {
         ],
         ephemeral: true,
       });
-
-    if (!member.bannable)
+    
+    if (!member.kickable)
       return interaction.reply({
         embeds: [
           {
             color: "#f04a47",
             title: "**Punishment System**",
-            description: "I can't ban that user!",
+            description: "I can't kick that user!",
           },
         ],
         ephemeral: true,
@@ -103,7 +105,7 @@ module.exports = {
           {
             color: "#f04a47",
             title: "**Punishment System**",
-            description: "You can't ban someone with a role higher than yours!",
+            description: "You can't kick someone with a role higher than yours!",
           },
         ],
         ephemeral: true,
@@ -112,7 +114,7 @@ module.exports = {
       embeds: [
         {
           color: "#43b582",
-          description: `<:botSuccess:956980119086465124> ***${user.tag} was banned*** | ${reason}`,
+          description: `<:botSuccess:956980119086465124> ***${user.tag} was kicked*** | ${reason}`,
         },
       ],
     });
@@ -120,7 +122,7 @@ module.exports = {
       embeds: [
         {
           color: "#f04a47",
-          description: `You were banned from ${guild.name} | ${reason}`,
+          description: `You were kicked from ${guild.name} | ${reason}`,
         },
         {
           color: "#ffc916",
@@ -129,6 +131,6 @@ module.exports = {
         },
       ],
     });
-    await member.ban({ reason: reason });
+    await member.kick( { reason: reason } );
   },
 };

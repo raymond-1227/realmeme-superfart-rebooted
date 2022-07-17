@@ -12,7 +12,6 @@ module.exports = {
           title: "**Need Command Help?**",
           description:
             "Type `/` in the message box and select my avatar on the sidebar to check all my available commands!",
-          timestamp: new Date(),
         },
       ],
       ephemeral: true,
