@@ -1,38 +1,39 @@
 // Core codes
 
 const fs = require("node:fs");
-const { Client, Collection } = require("discord.js");
+const path = require("node:path");
+const {
+  Client,
+  Collection,
+  GatewayIntentBits,
+  Partials,
+} = require("discord.js");
 const client = new Client({
   presence: {
     status: "online",
-    afk: false,
     activities: [
       {
-        name: "hello there",
+        name: "uno reverse card",
         type: "PLAYING",
-      }
+      },
     ],
   },
-  intents: 98045,
-  partials: ["CHANNEL", "MESSAGE"],
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
+  partials: [Partials.Channel],
 });
 require("dotenv").config();
 
 client.commands = new Collection();
+const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs
   .readdirSync("./commands")
   .filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
+  const filePath = path.join(commandsPath, file);
+  const command = require(filePath);
   client.commands.set(command.data.name, command);
 }
-
-const dmNotice = {
-  color: "RANDOM",
-  title: "**Why hello there.**",
-  description: "**Commands are disabled** in DMs.",
-};
 
 client.on("ready", () => {
   console.log("Ready!");
@@ -59,7 +60,7 @@ client.on("ready", () => {
 
 client.on("interactionCreate", async (interaction) => {
   const command = client.commands.get(interaction.commandName);
-  if (!interaction.isCommand()) return;
+  if (!interaction.isChatInputCommand()) return;
   if (!interaction.guild) {
     interaction.reply({ embeds: [dmNotice] });
   }
@@ -71,7 +72,7 @@ client.on("interactionCreate", async (interaction) => {
     await interaction.reply({
       embeds: [
         {
-          color: "RANDOM",
+          color: 0x0ccab6,
           title: "Error Occurred",
           description:
             "There was an error while executing this command!\n`" + error + "`",
@@ -96,7 +97,7 @@ client.on("messageCreate", async (message) => {
     message.reply({
       embeds: [
         {
-          color: "RANDOM",
+          color: 0x0ccab6,
           title: "Need Command Help?",
           description:
             "Type `/` in the message box and select my avatar on the sidebar to check all my available commands!",

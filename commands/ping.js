@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -8,8 +8,8 @@ module.exports = {
     await interaction.reply({
       embeds: [
         {
-          color: "#FFC916",
-          title: "**Ping?**",
+          color: 0xffc916,
+          title: "Ping?",
           description: "Pong!",
         },
       ],

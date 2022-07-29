@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -8,8 +8,8 @@ module.exports = {
     interaction.reply({
       embeds: [
         {
-          color: "RANDOM",
-          title: "**realme FAQs**",
+          color: 0x0ccab6,
+          title: "realme Tweaking FAQs",
           description: "Here are some questions you might ask!",
           fields: [
             {

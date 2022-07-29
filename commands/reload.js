@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -11,7 +11,7 @@ module.exports = {
       return interaction.reply({
         embeds: [
           {
-            color: "#FFC916",
+            color: 0xffc916,
             title: "Bot Reloader",
             description: "Only the bot developer can perform this action!",
           },
@@ -21,8 +21,8 @@ module.exports = {
     await interaction.reply({
       embeds: [
         {
-          color: "#FFC916",
-          title: "**Bot Reloader**",
+          color: 0xffc916,
+          title: "Bot Reloader",
           description: "Bot is now reloading.",
         },
       ],

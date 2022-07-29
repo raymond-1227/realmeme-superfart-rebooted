@@ -1,12 +1,13 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { SlashCommandBuilder } = require("discord.js");
 const { PermissionFlagsBits } = require("discord-api-types/v10");
-const rules = require("../rules.json");
+const rules = require("../misc/rules.json");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("ban")
     .setDescription("Bans the user from the server.")
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+    .setDMPermission(false)
     .addUserOption((option) =>
       option
         .setName("user")
@@ -25,15 +26,16 @@ module.exports = {
         .addChoices({ name: "Rule 6 - Doxxing", value: "rule6" })
         .addChoices({ name: "Rule 7 - Advertisements", value: "rule7" })
         .addChoices({ name: "Rule 8 - Repetitive Question", value: "rule8" })
-        .addChoices({ name: "Rule 9 - Bot Abuse", value: "rule9" })
-        .addChoices({ name: "Rule 10 - Illegal Software", value: "rule10" })
-        .addChoices({ name: "Rule 11 - Rule Updates", value: "rule11" })
-        .addChoices({ name: "Rule 12 - Use English", value: "rule12" })
+        .addChoices({ name: "Rule 9 - Repetitive Question", value: "rule9" })
+        .addChoices({ name: "Rule 10 - Bot Abuse", value: "rule10" })
+        .addChoices({ name: "Rule 11 - Illegal Software", value: "rule11" })
+        .addChoices({ name: "Rule 12 - Rule Updates", value: "rule12" })
+        .addChoices({ name: "Rule 13 - Use English", value: "rule13" })
         .addChoices({
-          name: "Rule 13 - Discord ToS / Community Guidelines",
-          value: "rule13",
+          name: "Rule 14 - Discord ToS / Community Guidelines",
+          value: "rule14",
         })
-        .addChoices({ name: "Rule 14 - Other", value: "rule14" })
+        .addChoices({ name: "Rule 15 - Other", value: "rule15" })
         .setRequired(true)
     )
     .addStringOption((option) =>
@@ -62,8 +64,8 @@ module.exports = {
       return interaction.reply({
         embeds: [
           {
-            color: "#f04a47",
-            title: "**Punishment System**",
+            color: 0xf04a47,
+            title: "Punishment System",
             description: "Couldn't get details from the given user input!",
             timestamp: new Date(),
           },
@@ -75,8 +77,8 @@ module.exports = {
       return interaction.reply({
         embeds: [
           {
-            color: "#f04a47",
-            title: "**Punishment System**",
+            color: 0xf04a47,
+            title: "Punishment System",
             description: "HEY DON'T BAN ME!!!!111!!11",
           },
         ],
@@ -87,8 +89,8 @@ module.exports = {
       return interaction.reply({
         embeds: [
           {
-            color: "#f04a47",
-            title: "**Punishment System**",
+            color: 0xf04a47,
+            title: "Punishment System",
             description: "I can't ban that user!",
           },
         ],
@@ -101,8 +103,8 @@ module.exports = {
       return interaction.reply({
         embeds: [
           {
-            color: "#f04a47",
-            title: "**Punishment System**",
+            color: 0xf04a47,
+            title: "Punishment System",
             description: "You can't ban someone with a role higher than yours!",
           },
         ],
@@ -111,7 +113,7 @@ module.exports = {
     await interaction.reply({
       embeds: [
         {
-          color: "#43b582",
+          color: 0x43b582,
           description: `<:botSuccess:956980119086465124> ***${user.tag} was banned*** | ${reason}`,
         },
       ],
@@ -119,16 +121,39 @@ module.exports = {
     await user.send({
       embeds: [
         {
-          color: "#f04a47",
+          color: 0xf04a47,
           description: `You were banned from ${guild.name} | ${reason}`,
         },
         {
-          color: "#ffc916",
+          color: 0xffc916,
           title: rules[rule].name,
           description: rules[rule].description,
         },
       ],
     });
     await member.ban({ reason: reason });
+    await client.channels.cache.get("1001166932407496754").send({
+      embeds: [
+        {
+          color: 0xf04a47,
+          title: "Punishment System",
+          description: `${user.tag} was banned.`,
+          fields: [
+            {
+              name: "Rule Violated",
+              value: rules[rule].name,
+            },
+            {
+              name: "Rule Description",
+              value: rules[rule].description,
+            },
+            {
+              name: "Additional Details",
+              value: details || "N/A",
+            },
+          ],
+        },
+      ],
+    });
   },
 };

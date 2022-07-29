@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -8,9 +8,10 @@ module.exports = {
     await interaction.reply({
       embeds: [
         {
-          color: "#FFC916",
+          color: 0xffc916,
           title: "Best ROM",
-          description: "___**There is no such best ROM.**___ One person's favorite ROM won't be the same as someone else's favorite ROM. The real best ROM is the one which you enjoy using the most, find the most stable, and has the features you want to use.",
+          description:
+            "___**There is no such best ROM.**___ One person's favorite ROM won't be the same as someone else's favorite ROM. The real best ROM is the one which you enjoy using the most, find the most stable, and has the features you want to use.",
         },
       ],
     });

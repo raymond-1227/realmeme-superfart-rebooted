@@ -1,20 +1,18 @@
 const fetch = require("node-fetch");
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("magisk")
     .setDescription("Gives you information about the latest Magisk."),
   async execute(interaction) {
-    const { client } = interaction;
-    const botOwner = client.users.cache.get("410839910204047360").tag;
     fetch(`https://api.github.com/repos/topjohnwu/Magisk/releases/latest`)
       .then((res) => res.json())
       .then((body) => {
         interaction.reply({
           embeds: [
             {
-              color: "#FFC916",
+              color: 0xffc916,
               title: "Magisk Info",
               description:
                 "Have fun rooting! \n *(Disclaimer: I'm not responsible for your issues, please root carefully.)*",

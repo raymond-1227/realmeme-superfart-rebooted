@@ -1,0 +1,92 @@
+{
+  "realme1": {
+    "name": "realme 1",
+    "channel": "https://t.me/Realme1Updates",
+    "group": "https://t.me/Realme1Community"
+  },
+  "realme2nc1": {
+    "name": "realme 2 / C1",
+    "channel": "https://t.me/realme_c1",
+    "group": "https://t.me/realmeC12"
+  },
+  "realme2pro": {
+    "name": "realme 2 Pro",
+    "channel": "https://t.me/realme2proXDA",
+    "group": "https://t.me/rm2pro_updates"
+  },
+  "realme3n3i": {
+    "name": "realme 3 / 3i",
+    "channel": "https://t.me/Realme3_3iUpdates",
+    "group": "https://t.me/Realme3Global"
+  },
+  "realme3pro": {
+    "name": "realme 3 Pro",
+    "channel": "https://t.me/Realme3ProUpdates",
+    "group": "https://t.me/realme3pros"
+  },
+  "realme5": {
+    "name": "realme 5",
+    "channel": "https://t.me/rmx_1911",
+    "group": "https://t.me/Realme5Dev"
+  },
+  "rm6785": {
+    "name": "realme 6 / 6s / 6i India / 7 / narzo 20 Pro / 30 4G",
+    "channel": "https://t.me/RM6785",
+    "group": "https://t.me/RM6Official or https://t.me/rm6785Official"
+  },
+  "realme6iglobal": {
+    "name": "realme 6i Global",
+    "channel": null,
+    "group": "https://t.me/narzo10club"
+  },
+  "realme7pro": {
+    "name": "realme 7 Pro",
+    "channel": "https://t.me/realme7ProUpdates",
+    "group": "https://t.me/realme7ProOfficial"
+  },
+  "realmec2": {
+    "name": "realme C2",
+    "channel": "https://t.me/realmec2update",
+    "group": "https://t.me/RealmeC2community"
+  },
+  "realmec3nnarzo10a": {
+    "name": "realme C3 / Narzo 10A",
+    "channel": "https://t.me/rc3n10aupdates",
+    "group": "https://t.me/RealmeC310ay"
+  },
+  "realmec11nc12nc15": {
+    "name": "realme C11 / C12 / C15",
+    "channel": "https://t.me/realme_c11_c12_c15_update",
+    "group": "https://t.me/Realmec11_offcial"
+  },
+  "realmegtmaster": {
+    "name": "realme GT Master",
+    "channel": " https://t.me/RealmeGTMasterUpdates",
+    "group": "https://t.me/RealmeGTMaster"
+  },
+  "realmegtneo2": {
+    "name": "realme GT Neo 2",
+    "channel": "https://t.me/RealmeGTNeo2_Official",
+    "group": "https://t.me/RealmeGTNeo2_Updates"
+  },
+  "realmex2pro": {
+    "name": "realme X2 Pro",
+    "channel": "https://t.me/rmx1931news",
+    "group": "https://t.me/realme_x2_Pro"
+  },
+  "realmex3nsuperzoom": {
+    "name": "realme X3 / SuperZoom",
+    "channel": "https://t.me/RealmeX3Updates",
+    "group": "https://t.me/RealmeX3"
+  },
+  "realmex7maxngtneo": {
+    "name": "realme X7 Max / GT Neo",
+    "channel": "https://t.me/RealmeX7MaxUpdates",
+    "group": null
+  },
+  "realmex50pro": {
+    "name": "realme X50 Pro",
+    "channel": "https://t.me/RealmeX50Pro_Updates",
+    "group": "https://t.me/RealmeX50ProOfficial"
+  }
+}

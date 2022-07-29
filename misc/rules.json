@@ -1,0 +1,62 @@
+{
+  "rule1": {
+    "name": "Rule 1 - Pings",
+    "description": "You may ping staffs for an appropriate reason. *DO NOT* ping roles. Do not ping moderators for technical support, we do not represent as realme employees, therefore we cannot provide technical helps but some options you may try. If you have any problems, DM <@575252669443211264> instead of DM-ing mods."
+  },
+  "rule2": {
+    "name": "Rule 2 - NSFW",
+    "description": "Do not use an offensive profile picture or username."
+  },
+  "rule3": {
+    "name": "Rule 3 - Insults",
+    "description": "Do not excessively attack other members. Excessive and malicious use of expletives are forbidden. Especially to our staff members."
+  },
+  "rule4": {
+    "name": "Rule 4 - Spam",
+    "description": "Do not spam messages in channels, nor acting stupid (e.g. ***YELLING*** in voice channels)"
+  },
+  "rule5": {
+    "name": "Rule 5 - Impersonation",
+    "description": "Do not pretend to be another person."
+  },
+  "rule6": {
+    "name": "Rule 6 - Doxxing",
+    "description": "Do not give out any personal information of anybody."
+  },
+  "rule7": {
+    "name": "Rule 7 - Advertisements",
+    "description": "Do not ask for or try to sell products of any kind. Permission must be requested from a staff member and must be shown upon request. Posting your own content such as videos or photos YOU have created are allowed, just don't use it as a form of self promotion. Do not cause a nuisance in the community."
+  },
+  "rule8": {
+    "name": "Rule 8 - Repetitive Question",
+    "description": "Do not ask the same question in multiple channels."
+  },
+  "rule9": {
+    "name": "Rule 9 - Off Topic",
+    "description": "Use the proper channels for discussion. (e.g. You may only discuss political topics in <#888031620999811073>)"
+  },
+  "rule10": {
+    "name": "Rule 10 - Bot Abuse",
+    "description": "Unless it fits within the conversation of the channel, use bot commands in the <#633547574208495626> channel."
+  },
+  "rule11": {
+    "name": "Rule 11 - Illegal Software",
+    "description": "We do not tolerate any promotion or links of illegal softwares."
+  },
+  "rule12": {
+    "name": "Rule 12 - Rule Updates",
+    "description": "We update rules, and it is your responsibility to check them regularly. We do not accept appeals of \"rules updated didn't know that it exists\" or something related like that."
+  },
+  "rule13": {
+    "name": "Rule 13 - Use English",
+    "description": "We moderate the community in English, please refrain from using languages outside English."
+  },
+  "rule14": {
+    "name": "Rule 14 - We consider Discord ToS / Community Guidelines",
+    "description": "Discord ToS: https://discord.com/terms/ \n Discord Community Guidelines: https://discord.com/guidelines/"
+  },
+  "rule15": {
+    "name": "Rule 15 - Other",
+    "description": "Just because something isn't mentioned here, does not mean that it's allowed. Moderators have the rights to decide what is and what is not appropriate."
+  }
+}
