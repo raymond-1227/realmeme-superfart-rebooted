@@ -18,10 +18,17 @@ const client = new Client({
       },
     ],
   },
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
-  partials: [Partials.Channel],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.DirectMessageTyping,
+  ],
+  partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 });
 require("dotenv").config();
+
+// Commands Handler
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, "commands");
@@ -35,76 +42,21 @@ for (const file of commandFiles) {
   client.commands.set(command.data.name, command);
 }
 
-client.on("ready", () => {
-  console.log("Ready!");
-  console.log(
-    `The bot is currently serving ${client.users.cache.size} users in ${client.guilds.cache.size} servers.`
-  );
-  setInterval(() => {
-    const statuses = [
-      { name: "for idiots", type: "WATCHING" },
-      { name: "with bricked devices", type: "PLAYING" },
-      { name: "you brick phones", type: "WATCHING" },
-      { name: "for new ROMs", type: "WATCHING" },
-      { name: "for sir plz sir", type: "WATCHING" },
-      { name: "with my pp", type: "PLAYING" },
-      { name: "people not follow the guide", type: "WATCHING" },
-      { name: "people double ping", type: "WATCHING" },
-      { name: "with the bEsT rOm", type: "PLAYING" },
-      { name: "for bugfixes", type: "WATCHING" },
-    ];
-    var randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-    client.user.setActivity(randomStatus);
-  }, 3600000);
-});
+// Events Handler
 
-client.on("interactionCreate", async (interaction) => {
-  const command = client.commands.get(interaction.commandName);
-  if (!interaction.isChatInputCommand()) return;
-  if (!interaction.guild) {
-    interaction.reply({ embeds: [dmNotice] });
-  }
-  if (!command) return;
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    console.error(error);
-    await interaction.reply({
-      embeds: [
-        {
-          color: 0x0ccab6,
-          title: "Error Occurred",
-          description:
-            "There was an error while executing this command!\n`" + error + "`",
-        },
-      ],
-      content: "",
-      ephemeral: true,
-    });
-  }
-});
+const eventsPath = path.join(__dirname, "events");
+const eventFiles = fs
+  .readdirSync(eventsPath)
+  .filter((file) => file.endsWith(".js"));
 
-client.on("messageCreate", async (message) => {
-  const wait = require("node:timers/promises").setTimeout;
-  if (message.author.bot) return;
-  if (message.channel.type == "DM") {
-    await wait(500);
-    await message.channel.sendTyping();
-    await wait(1000);
-    await message.channel.send({ embeds: [dmNotice] });
+for (const file of eventFiles) {
+  const filePath = path.join(eventsPath, file);
+  const event = require(filePath);
+  if (event.once) {
+    client.once(event.name, (...args) => event.execute(...args));
+  } else {
+    client.on(event.name, (...args) => event.execute(...args));
   }
-  if (message.content.includes("<@979758930374819910>")) {
-    message.reply({
-      embeds: [
-        {
-          color: 0x0ccab6,
-          title: "Need Command Help?",
-          description:
-            "Type `/` in the message box and select my avatar on the sidebar to check all my available commands!",
-        },
-      ],
-    });
-  }
-});
+}
 
 client.login(process.env.DISCORD);

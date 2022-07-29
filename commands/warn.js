@@ -67,7 +67,7 @@ module.exports = {
             color: 0xf04a47,
             title: "Punishment System",
             description: "Couldn't get details from the given user input!",
-            timestamp: new Date(),
+            timestamp: new Date().toISOString(),
           },
         ],
         ephemeral: true,
@@ -137,7 +137,7 @@ module.exports = {
         {
           color: 0xf04a47,
           title: "Punishment System",
-          description: `${user.tag} was warned for`,
+          description: `${user.tag} was warned.`,
           fields: [
             {
               name: "Rule Violated",
