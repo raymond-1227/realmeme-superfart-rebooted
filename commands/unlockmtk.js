@@ -11,7 +11,7 @@ module.exports = {
       embeds: [
         {
           color: 0xffc916,
-          title: "Magisk Info",
+          title: "MTK Bootloader Unlock",
           description:
             "Have fun unlocking bootloader! \n *(Disclaimer: I'm not responsible for your issues, please unlock carefully.)*",
           fields: [
@@ -19,11 +19,11 @@ module.exports = {
               name: "For Windows users",
               value: [
                 "1. Install [Python](https://www.python.org/downloads/windows)",
-                "2. Install [Git SCM](https://git-scm.com/download/win)",
+                "2. Install [Git SCM](https://git-scm.com/download/win) (OPTIONAL)",
                 "3. Install [UsbDk](https://github.com/daynix/UsbDk/releases)",
                 "4. Open Command Prompt",
                 "5. Execute the following commands:",
-                "```\ngit clone https://github.com/bkerler/mtkclient\n```",
+                "```\ngit clone https://github.com/bkerler/mtkclient.git\n**OR**\nDownload from (https://github.com/bkerler/mtkclient/archive/refs/tags/1.52.zip)[github]\n```",
                 "```\ncd mtkclient\n```",
                 "```\npip3 install -r requirements.txt\n```",
                 "```\npy mtk da seccfg unlock\n```",
@@ -36,8 +36,8 @@ module.exports = {
                 "*(Note: I will only provide how to install for Ubuntu as for now)*",
                 "1. Open Command Prompt",
                 "2. Execute the following commands:",
-                "```\nsudo apt install python3 git libusb-1.0-0 python3-pip\n```",
-                "```\ngit clone https://github.com/bkerler/mtkclient\n```",
+                "```\nsudo apt install python3 git libusb-1.0-0 python3-pip\n``` (git is optional)",
+                "```\ngit clone https://github.com/bkerler/mtkclient.git\n**OR**\nDownload from (https://github.com/bkerler/mtkclient/archive/refs/tags/1.52.zip)[github]\n```",
                 "```\ncd mtkclient\n```",
                 "```\npip3 install -r requirements.txt\n```",
                 "```\npython3 setup.py build\n```",
@@ -51,8 +51,8 @@ module.exports = {
               value: [
                 "1. Open Terminal",
                 "5. Execute the following commands:",
-                "```\nbrew install python3 git libusb\n```",
-                "```\ngit clone https://github.com/bkerler/mtkclient\n```",
+                "```\nbrew install python3 git libusb\n``` (git is optional)",
+                "```\ngit clone https://github.com/bkerler/mtkclient.git\n**OR**\nDownload from (https://github.com/bkerler/mtkclient/archive/refs/tags/1.52.zip)[github]\n```",
                 "```\ncd mtkclient\n```",
                 "```\npip3 install -r requirements.txt\n```",
                 "```\npython3 setup.py build\n```",
