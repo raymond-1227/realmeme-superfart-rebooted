@@ -19,7 +19,7 @@ module.exports = {
               name: "For Windows users",
               value: [
                 "1. Install [Python](https://www.python.org/downloads/windows)",
-                "2. Install [Git SCM](https://git-scm.com/download/win) (OPTIONAL)",
+                "2. Install [Git SCM](https://git-scm.com/download/win) (Optional)",
                 "3. Install [UsbDk](https://github.com/daynix/UsbDk/releases)",
                 "4. Open Command Prompt",
                 "5. Execute the following commands:",
@@ -36,7 +36,7 @@ module.exports = {
                 "*(Note: I will only provide how to install for Ubuntu as for now)*",
                 "1. Open Command Prompt",
                 "2. Execute the following commands:",
-                "```\nsudo apt install python3 git libusb-1.0-0 python3-pip\n``` (git is optional)",
+                "```\nsudo apt install python3 git libusb-1.0-0 python3-pip\n``` (Git is optional)",
                 "```\ngit clone https://github.com/bkerler/mtkclient.git\n**OR**\nDownload from (https://github.com/bkerler/mtkclient/archive/refs/tags/1.52.zip)[github]\n```",
                 "```\ncd mtkclient\n```",
                 "```\npip3 install -r requirements.txt\n```",
@@ -51,7 +51,7 @@ module.exports = {
               value: [
                 "1. Open Terminal",
                 "5. Execute the following commands:",
-                "```\nbrew install python3 git libusb\n``` (git is optional)",
+                "```\nbrew install python3 git libusb\n``` (Git is optional)",
                 "```\ngit clone https://github.com/bkerler/mtkclient.git\n**OR**\nDownload from (https://github.com/bkerler/mtkclient/archive/refs/tags/1.52.zip)[github]\n```",
                 "```\ncd mtkclient\n```",
                 "```\npip3 install -r requirements.txt\n```",
