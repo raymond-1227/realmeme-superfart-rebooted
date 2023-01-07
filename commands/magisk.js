@@ -13,7 +13,7 @@ module.exports = {
           embeds: [
             {
               color: 0xffc916,
-              title: "Magisk Info",
+              title: "How To Magisk",
               description:
                 "Have fun rooting! \n *(Disclaimer: I'm not responsible for your issues, please root carefully.)*",
               fields: [

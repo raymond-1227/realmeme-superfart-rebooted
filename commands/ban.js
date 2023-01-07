@@ -26,7 +26,7 @@ module.exports = {
         .addChoices({ name: "Rule 6 - Doxxing", value: "rule6" })
         .addChoices({ name: "Rule 7 - Advertisements", value: "rule7" })
         .addChoices({ name: "Rule 8 - Repetitive Question", value: "rule8" })
-        .addChoices({ name: "Rule 9 - Repetitive Question", value: "rule9" })
+        .addChoices({ name: "Rule 9 - Off Topic", value: "rule9" })
         .addChoices({ name: "Rule 10 - Bot Abuse", value: "rule10" })
         .addChoices({ name: "Rule 11 - Illegal Software", value: "rule11" })
         .addChoices({ name: "Rule 12 - Rule Updates", value: "rule12" })
@@ -43,7 +43,6 @@ module.exports = {
         .setName("details")
         .setDescription("Add details to the ban if necessary")
     ),
-
   async execute(interaction) {
     const { client, guild } = interaction;
     let user = await interaction.options.getUser("user");
@@ -53,7 +52,7 @@ module.exports = {
     let rule = interaction.options.getString("rule");
     let details = interaction.options.getString("details");
     let reason;
-    
+
     if (details == null) {
       reason = rules[rule].name;
     } else {
@@ -118,19 +117,28 @@ module.exports = {
         },
       ],
     });
-    await user.send({
-      embeds: [
-        {
-          color: 0xf04a47,
-          description: `You were banned from ${guild.name} | ${reason}`,
-        },
-        {
-          color: 0xffc916,
-          title: rules[rule].name,
-          description: rules[rule].description,
-        },
-      ],
-    });
+    await user
+      .send({
+        embeds: [
+          {
+            color: 0xf04a47,
+            description: `You were banned from ${guild.name} | ${reason}`,
+          },
+          {
+            color: 0xffc916,
+            title: rules[rule].name,
+            description: rules[rule].description,
+          },
+          {
+            color: 0xffc916,
+            description:
+              "Appeal the ban: <https://forms.gle/nUdK1PsqJx1Lwtq56>",
+          },
+        ],
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     await member.ban({ reason: reason });
     await client.channels.cache.get("1001166932407496754").send({
       embeds: [

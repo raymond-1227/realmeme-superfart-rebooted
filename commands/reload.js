@@ -6,7 +6,7 @@ module.exports = {
     .setDescription("Restarts the bot! (Bot developer exclusive)"),
   async execute(interaction) {
     const { client } = interaction;
-    const botOwner = client.users.cache.get(process.env.OWNERID).tag;
+    console.log(interaction.user.id)
     if (interaction.user.id !== process.env.OWNERID)
       return interaction.reply({
         embeds: [

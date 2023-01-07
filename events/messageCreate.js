@@ -13,12 +13,33 @@ module.exports = {
             fields: [
               {
                 name: "Note",
-                value: "This bot only works in the server, not in DM!",
-              }
+                value: "This bot only works in the server, not in DMs!",
+              },
             ],
           },
         ],
       });
     }
+
+    // Credits to @dumpydev for this
+    // realme Spell Check Blamer Pro+ Ultra Master Edition
+
+    // if (
+    //   (message.content.includes("realmeUI") == false &&
+    //     message.content.toLowerCase().includes("realmeui")) == true
+    // ) {
+    //   var split = message.content.toLowerCase().split(" ");
+    //   var match = split.filter((element) => element.includes("realmeui"));
+    //   var index = split.indexOf(match[0]);
+      
+    // } else if (
+    //   (message.content.includes("realme") == false &&
+    //     message.content.toLowerCase().includes("realme")) == true
+    // ) {
+    //   var split = message.content.toLowerCase().split(" ");
+    //   var match = split.filter((element) => element.includes("realme"));
+    //   var index = split.indexOf(match[0]);
+      
+    // }
   },
 };

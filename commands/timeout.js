@@ -23,7 +23,7 @@ module.exports = {
     .addStringOption((option) =>
       option
         .setName("rule")
-        .setDescription("Select a rule why you are kicking the user")
+        .setDescription("Select a rule why you are banning the user")
         .addChoices({ name: "Rule 1 - Pings", value: "rule1" })
         .addChoices({ name: "Rule 2 - NSFW", value: "rule2" })
         .addChoices({ name: "Rule 3 - Insults", value: "rule3" })
@@ -32,15 +32,16 @@ module.exports = {
         .addChoices({ name: "Rule 6 - Doxxing", value: "rule6" })
         .addChoices({ name: "Rule 7 - Advertisements", value: "rule7" })
         .addChoices({ name: "Rule 8 - Repetitive Question", value: "rule8" })
-        .addChoices({ name: "Rule 9 - Bot Abuse", value: "rule9" })
-        .addChoices({ name: "Rule 10 - Illegal Software", value: "rule10" })
-        .addChoices({ name: "Rule 11 - Rule Updates", value: "rule11" })
-        .addChoices({ name: "Rule 12 - Use English", value: "rule12" })
+        .addChoices({ name: "Rule 9 - Off Topic", value: "rule9" })
+        .addChoices({ name: "Rule 10 - Bot Abuse", value: "rule10" })
+        .addChoices({ name: "Rule 11 - Illegal Software", value: "rule11" })
+        .addChoices({ name: "Rule 12 - Rule Updates", value: "rule12" })
+        .addChoices({ name: "Rule 13 - Use English", value: "rule13" })
         .addChoices({
-          name: "Rule 13 - Discord ToS / Community Guidelines",
-          value: "rule13",
+          name: "Rule 14 - Discord ToS / Community Guidelines",
+          value: "rule14",
         })
-        .addChoices({ name: "Rule 14 - Other", value: "rule14" })
+        .addChoices({ name: "Rule 15 - Other", value: "rule15" })
         .setRequired(true)
     )
     .addStringOption((option) =>
@@ -59,7 +60,7 @@ module.exports = {
     let details = interaction.options.getString("details");
     let time = ms(interaction.options.getString("time"));
     let reason;
-    
+
     if (details == null) {
       reason = rules[rule].name;
     } else {
@@ -126,19 +127,23 @@ module.exports = {
         },
       ],
     });
-    await user.send({
-      embeds: [
-        {
-          color: 0xf04a47,
-          description: `You were timed out from ${guild.name} | ${reason}`,
-        },
-        {
-          color: 0xffc916,
-          title: rules[rule].name,
-          description: rules[rule].description,
-        },
-      ],
-    });
+    await user
+      .send({
+        embeds: [
+          {
+            color: 0xf04a47,
+            description: `You were timed out from ${guild.name} | ${reason}`,
+          },
+          {
+            color: 0xffc916,
+            title: rules[rule].name,
+            description: rules[rule].description,
+          },
+        ],
+      })
+      .catch((error) => {
+        console.error(`Could not send DM to ${interaction.author.tag}.\n`, error);
+      });
     await member.timeout(time, reason);
   },
 };

@@ -11,8 +11,14 @@ module.exports = {
     .setName("ltt")
     .setDescription(
       "This command is sponsored by *insert sponsorship name here*."
+    )
+    .addStringOption((option) =>
+      option
+        .setName("sponsor")
+        .setDescription("Name your sponsor.")
     ),
   async execute(interaction) {
+    let sponsor = interaction.options.getString("sponsor");
     let userVC = interaction.member.voice.channel;
     var fakeNames = [
       "L-Inus Te-ch Ti-ps",
@@ -33,7 +39,7 @@ module.exports = {
           {
             color: 0xffc916,
             title: randomfakeName,
-            description: "SPONSORED BY *insert sponsorship name here*",
+            description: `SPONSORED BY ${sponsor}`,
             footer: {
               text: "Tip: Join a voice channel to listen to the intro music as well!",
             },
@@ -46,7 +52,7 @@ module.exports = {
         {
           color: 0xffc916,
           title: randomfakeName,
-          description: "SPONSORED BY *insert sponsorship name here*",
+          description: `SPONSORED BY ${sponsor}`,
         },
       ],
     });
