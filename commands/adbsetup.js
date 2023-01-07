@@ -36,11 +36,18 @@ module.exports = {
                 "2. Unzip the file you just downloaded",
                 "3. Enable USB Debugging on your phone via developer options",
                 "4. Connect your phone to your computer in MTP (file transfer) mode",
-                "5. Open the Command Prompt",
+                "5. Open your terminal",
                 "6. Execute the following commands:",
+                "```\nsudo usermod -aG plugdev $USERNAME``` (Replace `$USERNAME` with your username)\n",
                 "```\ncd /path/to/extracted/platform-tools\n```",
                 "```\nadb devices\n```",
                 "7. Check the popup on your phone, tick Always Allow, and tap Allow",
+                "8. OPTIONAL: Add to path (.zshrc, .bashrc)\n",
+                "```\nanno $SHELLCONFIG\n```",
+                "Now add\n```export PATH="$PATH:*adbinstall*"```\n",
+                "Save your changes using Ctrl+X",
+                
+                
               ].join("\n"),
             },
             {
