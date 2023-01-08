@@ -21,7 +21,7 @@ module.exports = {
       });
     }
 
-    // Credits to @dumpydev for this
+    // Credits to @dumpydev for this (this is a joke btw, but the code does actually work)
     // realme Spell Check Blamer Pro+ Ultra Master Edition
 
     // if (
@@ -31,7 +31,6 @@ module.exports = {
     //   var split = message.content.toLowerCase().split(" ");
     //   var match = split.filter((element) => element.includes("realmeui"));
     //   var index = split.indexOf(match[0]);
-      
     // } else if (
     //   (message.content.includes("realme") == false &&
     //     message.content.toLowerCase().includes("realme")) == true
@@ -39,7 +38,6 @@ module.exports = {
     //   var split = message.content.toLowerCase().split(" ");
     //   var match = split.filter((element) => element.includes("realme"));
     //   var index = split.indexOf(match[0]);
-      
     // }
   },
 };

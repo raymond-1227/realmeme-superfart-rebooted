@@ -1,3 +1,5 @@
+const { ActivityType } = require("discord.js");
+
 module.exports = {
   name: "ready",
   once: true,
@@ -6,21 +8,42 @@ module.exports = {
     console.log(
       `The bot is currently serving ${client.users.cache.size} users in ${client.guilds.cache.size} servers.`
     );
+
+    // Status Changer
+    
+    client.user.setPresence({
+      activities: [{
+        name: "hi i just woke up",
+        type: ActivityType.Playing,
+      }],
+    })
+    
     setInterval(() => {
       const statuses = [
-        { name: "for idiots", type: "WATCHING" },
-        { name: "with bricked devices", type: "PLAYING" },
-        { name: "you brick phones", type: "WATCHING" },
-        { name: "for new ROMs", type: "WATCHING" },
-        { name: "for sir plz sir", type: "WATCHING" },
-        { name: "with my pp", type: "PLAYING" },
-        { name: "people not follow the guide", type: "WATCHING" },
-        { name: "people double ping", type: "WATCHING" },
-        { name: "with the bEsT rOm", type: "PLAYING" },
-        { name: "for bugfixes", type: "WATCHING" },
+        { type: ActivityType.Playing, text: "with my pp" },
+        { type: ActivityType.Playing, text: "with the bEsT rOm" },
+        { type: ActivityType.Playing, text: "uno reverse cards" },
+        { type: ActivityType.Playing, text: "people double ping" },
+        { type: ActivityType.Playing, text: "with bricked devices" },
+        { type: ActivityType.Listening, text: "stopify" },
+        { type: ActivityType.Listening, text: "yt music free" },
+        { type: ActivityType.Watching, text: "for idiots" },
+        { type: ActivityType.Watching, text: "reddit memes" },
+        { type: ActivityType.Watching, text: "for new ROMs" },
+        { type: ActivityType.Watching, text: "for bugfixes" },
+        { type: ActivityType.Watching, text: "for sir plz sir" },
+        { type: ActivityType.Watching, text: "you brick phones" },
+        { type: ActivityType.Watching, text: "people not follow the guide" },
       ];
-      var randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-      client.user.setActivity(randomStatus);
-    }, 3600000);
+      const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+      
+      client.user.setPresence({
+        activities: [{
+          name: randomStatus.text,
+          type: randomStatus.type,
+        }],
+      })
+      console.log("Status changed!")
+    }, 1800000);
   },
 };
