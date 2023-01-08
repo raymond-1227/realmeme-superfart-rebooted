@@ -9,15 +9,6 @@ const {
   Partials,
 } = require("discord.js");
 const client = new Client({
-  // presence: {
-  //   status: "online",
-  //   activities: [
-  //     {
-  //       name: "uno reverse card",
-  //       type: "PLAYING",
-  //     },
-  //   ],
-  // },
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,

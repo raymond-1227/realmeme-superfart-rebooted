@@ -44,7 +44,7 @@ module.exports = {
                 "7. Check the popup on your phone, tick Always Allow, and tap Allow",
                 "8. OPTIONAL: Add to path (.zshrc, .bashrc)\n",
                 "```\nanno $SHELLCONFIG\n```",
-                "Now add\n```export PATH="$PATH:*adbinstall*"```\n",
+                "Now add\n```export PATH=\"$PATH:*adbinstall*\"```\n",
                 "Save your changes using Ctrl+X",
                 
                 
