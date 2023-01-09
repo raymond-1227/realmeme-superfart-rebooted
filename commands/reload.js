@@ -1,12 +1,13 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("reload")
-    .setDescription("Restarts the bot! (Bot developer exclusive)"),
+    .setDescription("Restarts the bot! (Bot developer exclusive)")
+    .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
   async execute(interaction) {
     const { client } = interaction;
-    console.log(interaction.user.id)
+    console.log(interaction.user.id);
     if (interaction.user.id !== process.env.OWNERID)
       return interaction.reply({
         embeds: [
