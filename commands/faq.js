@@ -47,7 +47,7 @@ module.exports = {
             },
             {
               name: "How do I theme apps?",
-              value: "Use Swift Installer (Requires root)",
+              value: "Use Swift Installer (Requires root), or if you're on Android 13+, the function is in-built.",
             },
             {
               name: "Which devices get support for how long?",

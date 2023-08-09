@@ -21,6 +21,12 @@ module.exports = {
       });
     }
 
+    // Auto Moo Responder
+
+    if (message.content.trim() === "moo") {
+      message.react('🐮');
+    }
+
     // Credits to @dumpydev for this (this is a joke btw, but the code does actually work)
     // realme Spell Check Blamer Pro+ Ultra Master Edition
 

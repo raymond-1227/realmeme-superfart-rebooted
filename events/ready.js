@@ -1,13 +1,12 @@
 const { ActivityType } = require("discord.js");
+const path = require("node:path");
 
 module.exports = {
   name: "ready",
   once: true,
   execute(client) {
-    console.log("Ready!");
-    console.log(
-      `The bot is currently serving ${client.users.cache.size} users in ${client.guilds.cache.size} servers.`
-    );
+
+    console.log("Ready to serve!");
 
     // Status Changer
     
