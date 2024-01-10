@@ -23,7 +23,7 @@ module.exports = {
 
     // Auto Moo Responder
 
-    if (message.content.trim() === "moo") {
+    if (message.content.trim().toLowerCase() === "moo") {
       message.react('🐮');
     }
 
