@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
-const { PermissionFlagsBits } = require("discord-api-types/v10");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const rules = require("../misc/rules.json");
 
 module.exports = {
@@ -65,9 +64,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "Couldn't get details from the given user input!",
-            timestamp: new Date().toISOString(),
+            description: "<:botError:1279326378075885599> Couldn't get details from the given user input",
           },
         ],
         ephemeral: true,
@@ -78,20 +75,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "HEY DON'T WARN ME!!!!111!!11",
-          },
-        ],
-        ephemeral: true,
-      });
-
-    if (!member.kickable)
-      return interaction.reply({
-        embeds: [
-          {
-            color: 0xf04a47,
-            title: "Punishment System",
-            description: "I can't warn that user!",
+            description: "<:botError:1279326378075885599> HEY DON'T WARN ME!!!!111!!11",
           },
         ],
         ephemeral: true,
@@ -104,9 +88,8 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
             description:
-              "You can't warn someone with a role higher than yours!",
+              "<:botError:1279326378075885599> You can't warn someone with a role higher than yours",
           },
         ],
         ephemeral: true,
@@ -115,7 +98,7 @@ module.exports = {
       embeds: [
         {
           color: 0x43b582,
-          description: `<:botSuccess:956980119086465124> ***${user.tag} was warned || ${reason}***`,
+          description: `<:botSuccess:1279326365191114784> ***${user.tag} was warned.***`,
         },
       ],
     });
@@ -124,7 +107,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            description: `You were warned in ${guild.name} for: ${reason}`,
+            description: `You were warned in ${guild.name} for ${reason}`,
           },
           {
             color: 0xffc916,

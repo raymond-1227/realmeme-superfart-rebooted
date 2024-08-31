@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
-const { PermissionFlagsBits } = require("discord-api-types/v10");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const rules = require("../misc/rules.json");
 
 module.exports = {
@@ -65,9 +64,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "Couldn't get details from the given user input!",
-            timestamp: new Date().toISOString(),
+            description: "<:botError:1279326378075885599> Couldn't get details from the given user input",
           },
         ],
         ephemeral: true,
@@ -78,8 +75,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "HEY DON'T BAN ME!!!!111!!11",
+            description: "<:botError:1279326378075885599> HEY DON'T KICK ME!!!!111!!11",
           },
         ],
         ephemeral: true,
@@ -90,8 +86,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "I can't kick that user!",
+            description: "<:botError:1279326378075885599> I can't kick that user",
           },
         ],
         ephemeral: true,
@@ -104,9 +99,8 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
             description:
-              "You can't kick someone with a role higher than yours!",
+              "<:botError:1279326378075885599> You can't kick someone with a role higher than yours",
           },
         ],
         ephemeral: true,
@@ -115,7 +109,7 @@ module.exports = {
       embeds: [
         {
           color: 0x43b582,
-          description: `<:botSuccess:956980119086465124> ***${user.tag} was kicked*** | ${reason}`,
+          description: `<:botSuccess:1279326365191114784> ***${user.tag} was kicked.***`,
         },
       ],
     });
@@ -124,7 +118,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            description: `You were kicked from ${guild.name} | ${reason}`,
+            description: `You were kicked from ${guild.name} for ${reason}`,
           },
           {
             color: 0xffc916,

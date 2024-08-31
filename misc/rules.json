@@ -1,7 +1,7 @@
 {
   "rule1": {
     "name": "Rule 1 - Pings",
-    "description": "You may ping staffs for an appropriate reason. *DO NOT* ping roles. Do not ping moderators for technical support, we do not represent as realme employees, therefore we cannot provide technical helps but some options you may try. If you have any problems, DM <@575252669443211264> instead of DM-ing mods."
+    "description": "You may ping staffs for an appropriate reason, but do not ping or DM moderators for technical support, we do not represent as realme employees, therefore we cannot provide technical helps but some options you may try."
   },
   "rule2": {
     "name": "Rule 2 - NSFW",
@@ -13,7 +13,7 @@
   },
   "rule4": {
     "name": "Rule 4 - Spam",
-    "description": "Do not spam messages in channels, nor acting stupid (e.g. ***YELLING*** in voice channels)"
+    "description": "Do not spam messages in channels, nor acting stupid (e.g. ***YELLING*** in voice channels). Duplicates of posts in forum channels are considered spamming as well."
   },
   "rule5": {
     "name": "Rule 5 - Impersonation",
@@ -25,7 +25,7 @@
   },
   "rule7": {
     "name": "Rule 7 - Advertisements",
-    "description": "Do not ask for or try to sell products of any kind. Permission must be requested from a staff member and must be shown upon request. Posting your own content such as videos or photos YOU have created are allowed, just don't use it as a form of self promotion. Do not cause a nuisance in the community."
+    "description": "Do not ask for or try to sell products of any kind. Permission must be requested from a staff member and must be shown upon request. Posting your own content such as videos or photos YOU have created are allowed, just don't use it as a form of self promotion. Do not cause a nuisance in the community, repeated complaints from several members will lead to a moderation action."
   },
   "rule8": {
     "name": "Rule 8 - Repetitive Question",
@@ -33,11 +33,11 @@
   },
   "rule9": {
     "name": "Rule 9 - Off Topic",
-    "description": "Use the proper channels for discussion. (e.g. You may only discuss political topics in <#888031620999811073>)"
+    "description": "Use the proper channels for discussion. (e.g. You may only discuss political topics in `#politics`)"
   },
   "rule10": {
     "name": "Rule 10 - Bot Abuse",
-    "description": "Unless it fits within the conversation of the channel, use bot commands in the <#633547574208495626> channel."
+    "description": "Unless it fits within the conversation of the channel, use bot commands in the `#bot-spam` channel."
   },
   "rule11": {
     "name": "Rule 11 - Illegal Software",
@@ -53,10 +53,10 @@
   },
   "rule14": {
     "name": "Rule 14 - We consider Discord ToS / Community Guidelines",
-    "description": "Discord ToS: https://discord.com/terms/ \n Discord Community Guidelines: https://discord.com/guidelines/"
+    "description": "Discord ToS: <https://discord.com/terms/> \n Discord Community Guidelines: <https://discord.com/guidelines/>"
   },
   "rule15": {
     "name": "Rule 15 - Other",
-    "description": "Just because something isn't mentioned here, does not mean that it's allowed. Moderators have the rights to decide what is and what is not appropriate."
+    "description": "Just because something isn't mentioned here, does not mean that it's allowed. Server admins have the rights to decide what is and what is not appropriate."
   }
 }

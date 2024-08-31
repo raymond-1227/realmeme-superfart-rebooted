@@ -63,9 +63,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "Couldn't get details from the given user input!",
-            timestamp: new Date().toISOString(),
+            description: "<:botError:1279326378075885599> Couldn't get details from the given user input",
           },
         ],
         ephemeral: true,
@@ -76,8 +74,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "HEY DON'T BAN ME!!!!111!!11",
+            description: "<:botError:1279326378075885599> HEY DON'T BAN ME!!!!111!!11",
           },
         ],
         ephemeral: true,
@@ -88,8 +85,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "I can't ban that user!",
+            description: "<:botError:1279326378075885599> I can't ban that user",
           },
         ],
         ephemeral: true,
@@ -102,8 +98,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "You can't ban someone with a role higher than yours!",
+            description: "<:botError:1279326378075885599> You can't ban someone with a role higher than yours",
           },
         ],
         ephemeral: true,
@@ -112,7 +107,7 @@ module.exports = {
       embeds: [
         {
           color: 0x43b582,
-          description: `<:botSuccess:956980119086465124> ***${user.tag} was banned*** | ${reason}`,
+          description: `<:botSuccess:1279326365191114784> ***${user.tag} was banned.***`,
         },
       ],
     });

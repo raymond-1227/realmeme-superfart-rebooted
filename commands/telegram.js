@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
-const { PermissionFlagsBits } = require("discord-api-types/v10");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const devices = require("../misc/devices.json");
 
 module.exports = {

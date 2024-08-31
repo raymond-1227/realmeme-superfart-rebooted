@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
-const { PermissionFlagsBits } = require("discord-api-types/v10");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const ms = require("ms");
 const rules = require("../misc/rules.json");
 
@@ -8,18 +7,8 @@ module.exports = {
     .setName("timeout")
     .setDescription("Timeout a user from interacting with the server.")
     .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
-    .addUserOption((option) =>
-      option
-        .setName("user")
-        .setDescription("The user you want to timeout")
-        .setRequired(true)
-    )
-    .addStringOption((option) =>
-      option
-        .setName("time")
-        .setDescription("Set a time for the timeout")
-        .setRequired(true)
-    )
+    .addUserOption((option) => option.setName("user").setDescription("The user you want to timeout").setRequired(true))
+    .addStringOption((option) => option.setName("time").setDescription("Set a time for the timeout").setRequired(true))
     .addStringOption((option) =>
       option
         .setName("rule")
@@ -44,11 +33,7 @@ module.exports = {
         .addChoices({ name: "Rule 15 - Other", value: "rule15" })
         .setRequired(true)
     )
-    .addStringOption((option) =>
-      option
-        .setName("details")
-        .setDescription("Add details to the kick if necessary.")
-    ),
+    .addStringOption((option) => option.setName("details").setDescription("Add details to the kick if necessary.")),
 
   async execute(interaction) {
     const { client, guild } = interaction;
@@ -72,8 +57,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "Couldn't get details from the given user input!",
+            description: "<:botError:1279326378075885599> Couldn't get details from the given user input!",
             timestamp: new Date().toISOString(),
           },
         ],
@@ -85,23 +69,18 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "can you even timeout a discord bot...",
+            description: "<:botError:1279326378075885599> bruh can you even timeout a discord bot...",
           },
         ],
         ephemeral: true,
       });
 
-    if (
-      interaction.member.roles.highest.position <= member.roles.highest.position
-    )
+    if (interaction.member.roles.highest.position <= member.roles.highest.position)
       return interaction.reply({
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description:
-              "You can't timeout someone with a role higher than yours!",
+            description: "<:botError:1279326378075885599> You can't timeout someone with a role higher than yours",
           },
         ],
         ephemeral: true,
@@ -112,8 +91,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            title: "Punishment System",
-            description: "The time you provided is not valid!",
+            description: "<:botError:1279326378075885599> The time you provided is not valid",
           },
         ],
         ephemeral: true,
@@ -123,7 +101,7 @@ module.exports = {
       embeds: [
         {
           color: 0x43b582,
-          description: `<:botSuccess:956980119086465124> ***${user.tag} was timed out*** | ${reason}`,
+          description: `<:botSuccess:1279326365191114784> ***${user.tag} was timed out*** | ${reason}`,
         },
       ],
     });
@@ -132,7 +110,7 @@ module.exports = {
         embeds: [
           {
             color: 0xf04a47,
-            description: `You were timed out from ${guild.name} | ${reason}`,
+            description: `You were timed out from ${guild.name} for ${reason}`,
           },
           {
             color: 0xffc916,
