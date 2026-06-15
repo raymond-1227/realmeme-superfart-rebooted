@@ -13,7 +13,7 @@ if (!(ANTISPAM_GUILD_ID || ANTISPAM_CHANNEL_ID || ANTISPAM_LOG_CHANNEL_ID)) {
 
 const name = Events.MessageCreate;
 
-const callback = async (m: Message): Promise<void> => {
+const execute = async (m: Message): Promise<void> => {
   if (!ANTISPAM_ENABLED) return;
   if (m.guild?.id != ANTISPAM_GUILD_ID) return;
   if (m.channel.id != ANTISPAM_CHANNEL_ID) return;
@@ -50,4 +50,4 @@ const callback = async (m: Message): Promise<void> => {
   });
 };
 
-module.exports = { name, callback };
+module.exports = { name, execute };
