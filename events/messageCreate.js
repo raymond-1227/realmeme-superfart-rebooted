@@ -87,6 +87,24 @@ module.exports = {
         });
         await message.delete().catch((error) => console.error(error));
         await message.member.ban({ reason: reason });
+
+        const oneHourAgo = Date.now() - 60 * 60 * 1000;
+        const channels = await message.guild.channels.fetch();
+        const textChannels = channels.filter((c) => c.isTextBased());
+
+        for (const [cId, c] of textChannels) {
+          try {
+            const fetchedMessages = await c.messages.fetch({ limit: 100 });
+            const spammerMessages = fetchedMessages.filter(
+              (m) =>
+                m.author.id === message.author.id &&
+                m.createdTimestamp > oneHourAgo,
+            );
+            await c.bulkDelete(spammerMessages, true);
+          } catch (e) {
+            console.error(`failed to fetch messages in channel ${cId}: ${e}`);
+          }
+        }
       }
     }
 
