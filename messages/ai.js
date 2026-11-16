@@ -129,14 +129,15 @@ module.exports = {
       let referencedMessage;
       // Referenced message context
       if (message.reference?.messageId) {
+        let m = message;
         while (true) {
           try {
-            referencedMessage = message.channel.messages.cache.get(
-              message.reference.messageId,
+            referencedMessage = m.channel.messages.cache.get(
+              m.reference.messageId,
             );
             if (!referencedMessage) {
-              referencedMessage = await message.channel.messages.fetch(
-                message.reference.messageId,
+              referencedMessage = await m.channel.messages.fetch(
+                m.reference.messageId,
               );
               console.debug("ai(reply traverser): reply traversal cache miss");
             } else
@@ -154,8 +155,7 @@ module.exports = {
                 });
               }
             }
-            if (referencedMessage.reference?.messageId)
-              message = referencedMessage;
+            if (referencedMessage.reference?.messageId) m = referencedMessage;
             else {
               console.debug("ai(reply traverser): reply traversal ends");
               break;
