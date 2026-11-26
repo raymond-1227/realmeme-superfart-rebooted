@@ -1,11 +1,10 @@
-// DM Notice Handler
+import { ChannelType } from "discord.js";
+import type { MessageHandler } from "../types/bot.js";
 
-const { ChannelType } = require("discord.js");
-
-const delay = (ms) =>
+const delay = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
-module.exports = {
+const handler: MessageHandler = {
   exclusive: true,
 
   match(message) {
@@ -13,6 +12,8 @@ module.exports = {
   },
 
   async execute(message) {
+    if (message.channel.type !== ChannelType.DM) return;
+
     await message.channel.sendTyping();
     await delay(1000);
 
@@ -21,3 +22,5 @@ module.exports = {
     );
   },
 };
+
+export default handler;

@@ -1,9 +1,10 @@
-// Gemini AI Message Handler
-
-const { GoogleGenAI, ThinkingLevel } = require("@google/genai");
+import { GoogleGenAI, ThinkingLevel, type Part } from "@google/genai";
+import type { Message } from "discord.js";
+import { requireEnv } from "../config/env.js";
+import type { MessageHandler } from "../types/bot.js";
 
 const ai = new GoogleGenAI({
-  apiKey: process.env.GOOGLE_AI_STUDIO_API_KEY,
+  apiKey: requireEnv("GOOGLE_AI_STUDIO_API_KEY"),
   httpOptions: {
     apiVersion: "v1beta",
     retryOptions: {
@@ -16,8 +17,6 @@ const ai = new GoogleGenAI({
     },
   },
 });
-
-// System Instruction
 
 const systemInstruction = `You are a tech-savvy, relaxed community member in a Discord server. Your expertise is device tweaking (Android/iOS, ADB, Root, Custom ROMs, Magisk, etc.), but you are an all-purpose tech enthusiast capable of chatting about any topic.
 
@@ -43,13 +42,14 @@ Constraints:
 - Refusals: If a request is genuinely dangerous (not a joke), give a short, blunt refusal without a lecture.
 - Google Search First: Prefer using Google Search to verify facts before answering, especially for technical questions, device specifications, software updates, compatibility, troubleshooting, recent developments, or anything that may have changed over time. Search even if you think you already know the answer when accuracy or up-to-date information matters. Skip searching for casual conversations, simple questions, or topics where external verification adds no value. Never guess when a quick search could provide a reliable answer.`;
 
-// Helpers
-
-function removeBotMention(content, botId) {
+function removeBotMention(content: string, botId: string): string {
   return content.replace(new RegExp(`<@!?${botId}>`, "g"), "").trim();
 }
 
-async function urlToGenerativePart(url, mimeType) {
+async function urlToGenerativePart(
+  url: string,
+  mimeType: string,
+): Promise<Part> {
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -65,14 +65,15 @@ async function urlToGenerativePart(url, mimeType) {
     },
   };
 }
-// Message Handler
 
-module.exports = {
+const handler: MessageHandler = {
   match(message) {
     return message.inGuild() && message.mentions.has(message.client.user);
   },
 
   async execute(message) {
+    if (!message.inGuild()) return;
+
     const botId = message.client.user.id;
     const question = removeBotMention(message.content, botId);
 
@@ -80,7 +81,6 @@ module.exports = {
       attachment.contentType?.startsWith("image/"),
     );
 
-    // Help responder
     if (!question && imageAttachments.size === 0) {
       await message.channel.sendTyping();
 
@@ -109,7 +109,6 @@ module.exports = {
       return;
     }
 
-    // AI responder
     await message.channel.sendTyping();
 
     const typingInterval = setInterval(() => {
@@ -117,31 +116,27 @@ module.exports = {
     }, 7000);
 
     try {
-      const messageParts = [];
+      const messageParts: Part[] = [];
 
-      // User question
       if (question) {
         messageParts.push({
           text: `User prompt (user id: ${message.author}): ${question}`,
         });
       }
 
-      let referencedMessage;
-      // Referenced message context
       if (message.reference?.messageId) {
-        let m = message;
-        while (true) {
+        let currentMessage: Message = message;
+
+        while (currentMessage.reference?.messageId) {
+          const refId = currentMessage.reference.messageId;
           try {
-            referencedMessage = m.channel.messages.cache.get(
-              m.reference.messageId,
-            );
+            let referencedMessage = message.channel.messages.cache.get(refId);
             if (!referencedMessage) {
-              referencedMessage = await m.channel.messages.fetch(
-                m.reference.messageId,
-              );
+              referencedMessage = await message.channel.messages.fetch(refId);
               console.debug("ai(reply traverser): reply traversal cache miss");
-            } else
+            } else {
               console.debug("ai(reply traverser): reply traversal cache hit");
+            }
 
             if (referencedMessage.content) {
               const cleanRefContent = removeBotMention(
@@ -155,8 +150,10 @@ module.exports = {
                 });
               }
             }
-            if (referencedMessage.reference?.messageId) m = referencedMessage;
-            else {
+
+            if (referencedMessage.reference?.messageId) {
+              currentMessage = referencedMessage;
+            } else {
               console.debug("ai(reply traverser): reply traversal ends");
               break;
             }
@@ -171,10 +168,11 @@ module.exports = {
         `ai(reply traverser): final messageParts: ${JSON.stringify(messageParts, null, 2)}`,
       );
 
-      // Image attachments
       for (const [index, attachment] of [
         ...imageAttachments.values(),
       ].entries()) {
+        if (!attachment.contentType) continue;
+
         messageParts.push({
           text: `Image ${index + 1}:`,
         });
@@ -184,7 +182,6 @@ module.exports = {
         );
       }
 
-      // Generate AI response
       const response = await ai.models.generateContent({
         model: "gemini-4-hydrogen",
         contents: [
@@ -205,7 +202,6 @@ module.exports = {
         },
       });
 
-      // Check Google Search usage
       const usedSearch =
         (response.candidates?.[0]?.groundingMetadata?.groundingChunks?.length ??
           0) > 0;
@@ -216,7 +212,6 @@ module.exports = {
         `\n\n-# Powered by Gemini 4 Hydrogen${searchStatus}` +
         "\n-# Gemini is AI and can make mistakes.";
 
-      // Format response
       const replyText = response.text || "";
       const maxLength = Math.min(1800, 2000 - footer.length);
 
@@ -239,3 +234,5 @@ module.exports = {
     }
   },
 };
+
+export default handler;
