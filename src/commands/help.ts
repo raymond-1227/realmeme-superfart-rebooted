@@ -1,11 +1,12 @@
-const { SlashCommandBuilder, MessageFlags } = require("discord.js");
+import { MessageFlags, SlashCommandBuilder } from "discord.js";
+import type { SlashCommand } from "../types/bot.js";
 
-module.exports = {
+const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("help")
     .setDescription("How to check my available commands!"),
   async execute(interaction) {
-    interaction.reply({
+    await interaction.reply({
       embeds: [
         {
           color: 0x0ccab6,
@@ -18,3 +19,5 @@ module.exports = {
     });
   },
 };
+
+export default command;

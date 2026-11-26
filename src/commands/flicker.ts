@@ -1,6 +1,7 @@
-const { SlashCommandBuilder } = require("discord.js");
+import { SlashCommandBuilder } from "discord.js";
+import type { SlashCommand } from "../types/bot.js";
 
-module.exports = {
+const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("flicker")
     .setDescription("What it means when your phone flickers."),
@@ -38,3 +39,5 @@ module.exports = {
     });
   },
 };
+
+export default command;

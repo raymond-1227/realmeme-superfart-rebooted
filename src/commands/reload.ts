@@ -1,6 +1,12 @@
-const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require("discord.js");
+import {
+  MessageFlags,
+  PermissionFlagsBits,
+  SlashCommandBuilder,
+} from "discord.js";
+import { requireEnv } from "../config/env.js";
+import type { SlashCommand } from "../types/bot.js";
 
-module.exports = {
+const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("reload")
     .setDescription("Restarts the bot! (Bot developer exclusive)")
@@ -8,8 +14,9 @@ module.exports = {
   async execute(interaction) {
     const { client } = interaction;
     console.log(interaction.user.id);
-    if (interaction.user.id !== process.env.OWNER_ID)
-      return interaction.reply({
+
+    if (interaction.user.id !== requireEnv("OWNER_ID")) {
+      await interaction.reply({
         embeds: [
           {
             color: 0xffc916,
@@ -19,6 +26,9 @@ module.exports = {
         ],
         flags: MessageFlags.Ephemeral,
       });
+      return;
+    }
+
     await interaction.reply({
       embeds: [
         {
@@ -30,6 +40,8 @@ module.exports = {
       flags: MessageFlags.Ephemeral,
     });
     await client.destroy();
-    return process.exit(0);
+    process.exit(0);
   },
 };
+
+export default command;

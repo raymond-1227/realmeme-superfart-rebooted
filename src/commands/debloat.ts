@@ -1,6 +1,7 @@
-const { SlashCommandBuilder } = require("discord.js");
+import { SlashCommandBuilder } from "discord.js";
+import type { SlashCommand } from "../types/bot.js";
 
-module.exports = {
+const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("debloat")
     .setDescription("My phone is full of bloatware, help me."),
@@ -26,3 +27,5 @@ module.exports = {
     });
   },
 };
+
+export default command;

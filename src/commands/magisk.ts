@@ -1,13 +1,32 @@
-const { SlashCommandBuilder } = require("discord.js");
-const axios = require("axios");
+import axios from "axios";
+import { SlashCommandBuilder } from "discord.js";
+import type { SlashCommand } from "../types/bot.js";
 
-module.exports = {
-  data: new SlashCommandBuilder().setName("magisk").setDescription("Gives you information about the latest Magisk."),
+interface GitHubReleaseAsset {
+  name: string;
+  browser_download_url: string;
+}
+
+interface GitHubRelease {
+  tag_name: string;
+  assets: GitHubReleaseAsset[];
+}
+
+const command: SlashCommand = {
+  data: new SlashCommandBuilder()
+    .setName("magisk")
+    .setDescription("Gives you information about the latest Magisk."),
   async execute(interaction) {
-    const response = await axios.get(`https://api.github.com/repos/topjohnwu/Magisk/releases/latest`);
+    const response = await axios.get<GitHubRelease>(
+      "https://api.github.com/repos/topjohnwu/Magisk/releases/latest",
+    );
     const body = response.data;
+    const primaryAsset = body.assets[0];
+    const downloadLink = primaryAsset
+      ? `[${primaryAsset.name}](${primaryAsset.browser_download_url})`
+      : "Unavailable";
 
-    interaction.reply({
+    await interaction.reply({
       embeds: [
         {
           color: 0xffc916,
@@ -21,7 +40,7 @@ module.exports = {
             },
             {
               name: "Download Link",
-              value: `[${body.assets[0].name}](${body.assets[0].browser_download_url})`,
+              value: downloadLink,
             },
             {
               name: "Installation",
@@ -65,7 +84,7 @@ module.exports = {
               value: [
                 "1. Reboot to recovery by holding Volume up and Power to reboot",
                 "2. Install the Magisk_Uninstaller.zip file",
-                `3. Try installing the Magisk zip file instead as the FALLBACK OPTION`,
+                "3. Try installing the Magisk zip file instead as the FALLBACK OPTION",
               ].join("\n"),
             },
           ],
@@ -74,3 +93,5 @@ module.exports = {
     });
   },
 };
+
+export default command;

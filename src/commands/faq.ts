@@ -1,11 +1,14 @@
-const { SlashCommandBuilder, MessageFlags } = require("discord.js");
+import { MessageFlags, SlashCommandBuilder } from "discord.js";
+import type { SlashCommand } from "../types/bot.js";
 
-module.exports = {
+const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("faq")
-    .setDescription("Get a bunch of frequently asked questions and their answers."),
+    .setDescription(
+      "Get a bunch of frequently asked questions and their answers.",
+    ),
   async execute(interaction) {
-    interaction.reply({
+    await interaction.reply({
       embeds: [
         {
           color: 0x0ccab6,
@@ -47,7 +50,8 @@ module.exports = {
             },
             {
               name: "How do I theme apps?",
-              value: "Use Swift Installer (Requires root), or if you're on Android 13+, the function is in-built.",
+              value:
+                "Use Swift Installer (Requires root), or if you're on Android 13+, the function is in-built.",
             },
             {
               name: "Which devices get support for how long?",
@@ -70,3 +74,5 @@ module.exports = {
     });
   },
 };
+
+export default command;

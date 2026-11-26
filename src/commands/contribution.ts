@@ -1,19 +1,22 @@
-const { SlashCommandBuilder } = require("discord.js");
+import { SlashCommandBuilder } from "discord.js";
+import type { SlashCommand } from "../types/bot.js";
 
-module.exports = {
+const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("contribution")
-    .setDescription("About the creators of the bot and its open source links."),
+    .setDescription(
+      "About the creators of the bot and its open source links.",
+    ),
   async execute(interaction) {
     const { client } = interaction;
-    interaction.reply({
+    await interaction.reply({
       embeds: [
         {
           color: 0xffc916,
           title: "Contributions",
           description: "The open source information about this bot.",
           thumbnail: {
-            url: client.user.displayAvatarURL,
+            url: client.user.displayAvatarURL(),
           },
           fields: [
             {
@@ -40,3 +43,5 @@ module.exports = {
     });
   },
 };
+
+export default command;

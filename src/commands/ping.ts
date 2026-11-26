@@ -1,6 +1,7 @@
-const { SlashCommandBuilder } = require("discord.js");
+import { SlashCommandBuilder } from "discord.js";
+import type { SlashCommand } from "../types/bot.js";
 
-module.exports = {
+const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("ping")
     .setDescription("Replies with pong!"),
@@ -16,3 +17,5 @@ module.exports = {
     });
   },
 };
+
+export default command;

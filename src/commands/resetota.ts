@@ -1,6 +1,7 @@
-const { SlashCommandBuilder } = require("discord.js");
+import { SlashCommandBuilder } from "discord.js";
+import type { SlashCommand } from "../types/bot.js";
 
-module.exports = {
+const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("resetota")
     .setDescription("Learn how you can reset OTA updater on your phone."),
@@ -24,3 +25,5 @@ module.exports = {
     });
   },
 };
+
+export default command;

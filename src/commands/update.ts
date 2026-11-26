@@ -1,7 +1,10 @@
-const { SlashCommandBuilder } = require("discord.js");
+import { SlashCommandBuilder } from "discord.js";
+import type { SlashCommand } from "../types/bot.js";
 
-module.exports = {
-  data: new SlashCommandBuilder().setName("update").setDescription("Just shut up and update your phone."),
+const command: SlashCommand = {
+  data: new SlashCommandBuilder()
+    .setName("update")
+    .setDescription("Just shut up and update your phone."),
   async execute(interaction) {
     await interaction.reply({
       embeds: [
@@ -12,7 +15,8 @@ module.exports = {
           fields: [
             {
               name: "Why?",
-              value: "**No, one, cares.** Even you ask any staff 10,000 times, we'll still tell you to update it.",
+              value:
+                "**No, one, cares.** Even you ask any staff 10,000 times, we'll still tell you to update it.",
             },
             {
               name: "What?",
@@ -27,3 +31,5 @@ module.exports = {
     });
   },
 };
+
+export default command;
