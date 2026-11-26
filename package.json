@@ -3,10 +3,17 @@
   "version": "2.0.0",
   "description": "The Discord bot for r/realme Community Discord server.",
   "homepage": "https://github.com/raymond-1227/realmeme-superfart-rebooted",
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "clean": "node -e \"import('node:fs').then((fs) => fs.rmSync('dist', { recursive: true, force: true }))\"",
+    "build": "npm run clean && tsc",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/index.js",
+    "dev": "npm run build && node dist/index.js",
+    "deploy": "npm run build && node dist/deploy.js",
+    "undeploy": "npm run build && node dist/undeploy.js",
+    "test": "npm run typecheck"
   },
   "author": "Raymond Hsu",
   "license": "MIT",
@@ -26,5 +33,10 @@
     "ffmpeg-static": true,
     "@discordjs/opus@0.11.0": true,
     "protobufjs@7.6.6": true
+  },
+  "devDependencies": {
+    "@types/ms": "^2.1.0",
+    "@types/node": "^26.6.11",
+    "typescript": "^7.0.2"
   }
 }
