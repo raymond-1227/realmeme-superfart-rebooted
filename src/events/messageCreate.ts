@@ -1,16 +1,13 @@
-// Message Handler
+import { Events } from "discord.js";
+import { defineEvent, type MessageHandler } from "../types/bot.js";
 
-const { Events } = require("discord.js");
-
-module.exports = {
+export default defineEvent({
   name: Events.MessageCreate,
-
   async execute(message) {
-    // Ignore messages from bots
     if (message.author.bot) return;
 
     const handlers = [...message.client.messages.values()];
-    const matchingHandlers = [];
+    const matchingHandlers: MessageHandler[] = [];
 
     for (const handler of handlers) {
       try {
@@ -22,7 +19,6 @@ module.exports = {
       }
     }
 
-    // Exclusive handlers prevent regular handlers from running
     const exclusiveHandlers = matchingHandlers.filter(
       (handler) => handler.exclusive,
     );
@@ -38,11 +34,11 @@ module.exports = {
     for (const [index, result] of results.entries()) {
       if (result.status === "rejected") {
         console.error(
-          `[MESSAGE] Handler failed:`,
+          "[MESSAGE] Handler failed:",
           selectedHandlers[index],
           result.reason,
         );
       }
     }
   },
-};
+});
